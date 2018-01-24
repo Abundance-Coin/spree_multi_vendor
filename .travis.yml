@@ -23,4 +23,5 @@ rvm:
   - 2.2.9
 
 before_install:
+  - gem update --system
   - mysql -u root -e "GRANT ALL ON *.* TO 'travis'@'%';"
