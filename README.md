@@ -1,4 +1,4 @@
-# Spree Multi Vendor
+# Spree Multi Vendor [![Build Status](https://travis-ci.org/public-market/spree_multi_vendor.svg?branch=master)](https://travis-ci.org/public-market/spree_multi_vendor)
 
 This is a spree multi vendor marketplace extension.
 
