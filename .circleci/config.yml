@@ -9,6 +9,7 @@ jobs:
           DB: postgres
           BUNDLER_GEMFILE: gemfiles/spree_3_3.gemfile
           BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
       - image: circleci/postgres:9.5
     steps:
       - checkout
