@@ -27,11 +27,15 @@ jobs:
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
       - run: echo {{ $RAILS_ENV }}
-      - run: echo $RAILS_ENV
+      - run: echo $BUNDLE_GEMFILE
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum $BUNDLE_GEMFILE }}
+          key: v1-dependencies-{{ checksum {{ $BUNDLE_GEMFILE }} }}
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum {{ echo $BUNDLE_GEMFILE }} }}
 
       # - restore_cache:
       #     keys:
