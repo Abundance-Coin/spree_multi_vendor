@@ -24,7 +24,7 @@ jobs:
           - v1-dependencies-
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum {{ $BUNDLE_GEMFILE }} }}
+          - v1-dependencies-{{ checksum "{{ $BUNDLE_GEMFILE }}" }}
           - v1-dependencies-
       - restore_cache:
           keys:
