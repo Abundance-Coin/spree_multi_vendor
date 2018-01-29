@@ -18,7 +18,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "gemfiles/spree_3_3.gemfile.lock" }}
+          - v1-dependencies-{{ checksum $BUNDLE_GEMFILE }}
           - v1-dependencies-
       - run:
           name: install dependencies
@@ -29,7 +29,7 @@ jobs:
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "gemfiles/spree_3_3.gemfile.lock" }}
+          key: v1-dependencies-{{ checksum $BUNDLE_GEMFILE }}
 
       # - restore_cache:
       #     keys:
