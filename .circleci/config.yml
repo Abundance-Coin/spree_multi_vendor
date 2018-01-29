@@ -22,6 +22,14 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum $BUNDLE_GEMFILE }}
           - v1-dependencies-
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum {{ $BUNDLE_GEMFILE }} }}
+          - v1-dependencies-
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum {{ echo $BUNDLE_GEMFILE }} }}
+          - v1-dependencies-
       - run:
           name: install dependencies
           command: |
