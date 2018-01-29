@@ -2,6 +2,8 @@ version: 2
 jobs:
   master-branch:
     working_directory: ~/spree_multi_vendor
+    environment:
+      BUNDLE_GEMFILE: gemfiles/spree_3_3.gemfile
     docker:
       - image: circleci/ruby:2.4.3-node-browsers
         environment:
