@@ -3,7 +3,7 @@ jobs:
   master-branch:
     working_directory: ~/spree_multi_vendor
     docker:
-      - image: circleci/ruby:2.4.3-node
+      - image: circleci/ruby:2.4.3-node-browsers
         environment:
           RAILS_ENV: test
           DB: postgres
@@ -19,7 +19,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "gemfiles/spree_3_3.gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run:
           name: install dependencies
