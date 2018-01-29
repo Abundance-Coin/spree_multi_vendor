@@ -10,7 +10,10 @@ jobs:
           BUNDLER_GEMFILE: gemfiles/spree_3_3.gemfile
           BUNDLE_PATH: vendor/bundle
           PGHOST: 127.0.0.1
+          PGUSER: spree_user
       - image: circleci/postgres:9.5
+        environment:
+          POSTGRES_USER: spree_user
     steps:
       - checkout
       - restore_cache:
