@@ -36,7 +36,7 @@ jobs:
       - run: bundle exec rake
 
   spree_3_3:
-    <<: *defaults
+    <<: *default
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_3_3.gemfile
 
