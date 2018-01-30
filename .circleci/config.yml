@@ -6,7 +6,7 @@ jobs:
       RUBY_VERSION: 2.4.3
       DB: postgres
 
-    working_directory: ~/spree_multi_vendor_$BUNDLE_GEMFILE_$RUBY_VERSION
+    working_directory: ~/spree_multi_vendor/${RUBY_VERSION}/${BUNDLE_GEMFILE}
 
     docker:
       - image: circleci/ruby:$RUBY_VERSION-node-browsers
