@@ -25,26 +25,23 @@ jobs:
     steps:
       - checkout
 
-      - run: ls -la .
-      - run: ls -la ..
-
       - run:
           name: Copy correct Gemfile.lock
           command: cp $BUNDLE_GEMFILE.lock ./Gemfile.lock
 
       - restore_cache:
           keys:
-          - v1-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
-          - v1-bundler-
+          - v2-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
 
       - run:
           name: Install dependencies
           command: bundle check || bundle install
 
-      - run: ls -la .
+      - run: ls -la ./vendor
+      - run: ls -la /home/circleci/spree_multi_vendor/vendor/bundle
 
       - save_cache:
-          key: v1-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
+          key: v2-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
           paths:
             - /home/circleci/spree_multi_vendor/vendor/bundle
 
