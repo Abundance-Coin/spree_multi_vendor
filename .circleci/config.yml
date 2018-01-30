@@ -21,7 +21,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum .Environment.CIRCLE_STAGE.lock }}
+          - v1-dependencies-{{ checksum echo .Environment.CIRCLE_STAGE + ".lock" }}
           - v1-dependencies-
       - restore_cache:
           keys:
