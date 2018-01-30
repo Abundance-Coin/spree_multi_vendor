@@ -1,13 +1,14 @@
 version: 2
 jobs:
-  spree_master: &default
+  spree_master: &spree_master
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_master.gemfile
+      RUBY_VERSION: 2.4.3
 
     working_directory: ~/spree_multi_vendor
 
     docker:
-      - image: circleci/ruby:2.4.3-node-browsers
+      - image: circleci/ruby:$RUBY_VERSION-node-browsers
         environment:
           RAILS_ENV: test
           DB: postgres
@@ -40,29 +41,58 @@ jobs:
       - run: bundle exec rake test_app
       - run: bundle exec rake
 
-  spree_3_4:
-    <<: *default
+  spree_master_ruby_2_5:
+    <<: *spree_master
+    environment:
+      RUBY_VERSION: 2.5.0
+
+  spree_3_4: &spree_3_4
+    <<: *spree_master
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_3_4.gemfile
-  spree_3_3:
-    <<: *default
+  spree_3_4_ruby_2_5:
+    <<: *spree_3_4
+    environment:
+      RUBY_VERSION: 2.5.0
+
+  spree_3_3: &spree_3_3
+    <<: *spree_master
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_3_3.gemfile
-  spree_3_2:
-    <<: *default
+  spree_3_3_ruby_2_5:
+    <<: *spree_3_3
+    environment:
+      RUBY_VERSION: 2.5.0
+
+  spree_3_2: &spree_3_2
+    <<: *spree_master
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_3_2.gemfile
-  spree_3_1:
-    <<: *default
+  spree_3_2_ruby_2_5:
+    <<: *spree_3_2
+    environment:
+      RUBY_VERSION: 2.5.0
+
+  spree_3_1: &spree_3_1
+    <<: *spree_master
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_3_1.gemfile
+  spree_3_1_ruby_2_5:
+    <<: *spree_3_1
+    environment:
+      RUBY_VERSION: 2.5.0
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - spree_master
+      - spree_master_ruby_2_5
       - spree_3_4
+      - spree_3_4_ruby_2_5
       - spree_3_3
+      - spree_3_3_ruby_2_5
       - spree_3_2
+      - spree_3_2_ruby_2_5
       - spree_3_1
+      - spree_3_1_ruby_2_5
