@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  master-branch: &default
+  gemfiles/spree_master.gemfile: &default
     working_directory: ~/spree_multi_vendor
 
     environment:
