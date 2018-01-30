@@ -36,6 +36,8 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
+      - run: cat $BUNDLE_GEMFILE
+
       - run: bundle exec rake test_app
       - run: bundle exec rake
 
@@ -48,5 +50,5 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - gemfiles/spree_master.gemfile
+      - spree_master
       - spree_3_3
