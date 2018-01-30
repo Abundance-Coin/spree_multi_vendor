@@ -50,6 +50,7 @@ jobs:
   spree_3_4:
     <<: *spree_master
     environment: &spree_3_4_env
+      <<: *spree_master_env
       BUNDLE_GEMFILE: gemfiles/spree_3_4.gemfile
   spree_3_4_ruby_2_5:
     <<: *spree_master
@@ -60,6 +61,7 @@ jobs:
   spree_3_3:
     <<: *spree_master
     environment: &spree_3_3_env
+      <<: *spree_master_env
       BUNDLE_GEMFILE: gemfiles/spree_3_3.gemfile
   spree_3_3_ruby_2_5:
     <<: *spree_master
@@ -70,6 +72,7 @@ jobs:
   spree_3_2:
     <<: *spree_master
     environment: &spree_3_2_env
+      <<: *spree_master_env
       BUNDLE_GEMFILE: gemfiles/spree_3_2.gemfile
   spree_3_2_ruby_2_5:
     <<: *spree_master
@@ -80,6 +83,7 @@ jobs:
   spree_3_1:
     <<: *spree_master
     environment: &spree_3_1_env
+      <<: *spree_master_env
       BUNDLE_GEMFILE: gemfiles/spree_3_1.gemfile
   spree_3_1_ruby_2_5:
     <<: *spree_master
