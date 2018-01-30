@@ -4,6 +4,7 @@ jobs:
     environment: &spree_master_env
       BUNDLE_GEMFILE: gemfiles/spree_master.gemfile
       RUBY_VERSION: 2.4.3
+      DB: postgres
 
     working_directory: ~/spree_multi_vendor
 
@@ -11,17 +12,22 @@ jobs:
       - image: circleci/ruby:$RUBY_VERSION-node-browsers
         environment:
           RAILS_ENV: test
-          DB: postgres
           BUNDLE_PATH: vendor/bundle
+          BUNDLE_JOBS: 4
+          BUNDLE_RETRY: 3
           PGHOST: 127.0.0.1
           PGUSER: spree_user
+
       - image: circleci/postgres:9.5
         environment:
           POSTGRES_USER: spree_user
 
     steps:
       - checkout
-      - run: cp $BUNDLE_GEMFILE.lock ./Gemfile.lock
+
+      - run:
+        name: Copy correct Gemfile.lock
+        command: cp $BUNDLE_GEMFILE.lock ./Gemfile.lock
 
       - restore_cache:
           keys:
@@ -29,9 +35,8 @@ jobs:
           - v1-bundler-
 
       - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+          name: Install dependencies
+          command: bundle check || bundle install
 
       - save_cache:
           key: v1-bundler-{{ checksum "Gemfile.lock" }}
