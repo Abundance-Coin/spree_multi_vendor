@@ -1,7 +1,7 @@
 version: 2
 jobs:
   spree_master: &spree_master
-    environment:
+    environment: &spree_master_env
       BUNDLE_GEMFILE: gemfiles/spree_master.gemfile
       RUBY_VERSION: 2.4.3
 
@@ -44,6 +44,7 @@ jobs:
   spree_master_ruby_2_5:
     <<: *spree_master
     environment:
+      <<: *spree_master_env
       RUBY_VERSION: 2.5.0
 
   spree_3_4:
@@ -53,7 +54,7 @@ jobs:
   spree_3_4_ruby_2_5:
     <<: *spree_master
     environment:
-      <<: &spree_3_4_env
+      <<: *spree_3_4_env
       RUBY_VERSION: 2.5.0
 
   spree_3_3:
@@ -63,7 +64,7 @@ jobs:
   spree_3_3_ruby_2_5:
     <<: *spree_master
     environment:
-      <<: &spree_3_3_env
+      <<: *spree_3_3_env
       RUBY_VERSION: 2.5.0
 
   spree_3_2:
@@ -73,7 +74,7 @@ jobs:
   spree_3_2_ruby_2_5:
     <<: *spree_3_2_env
     environment:
-      <<: &spree_3_2_env
+      <<: *spree_3_2_env
       RUBY_VERSION: 2.5.0
 
   spree_3_1:
@@ -81,9 +82,9 @@ jobs:
     environment: &spree_3_1_env
       BUNDLE_GEMFILE: gemfiles/spree_3_1.gemfile
   spree_3_1_ruby_2_5:
-    <<: *spree_3_1_env
+    <<: *spree_master
     environment:
-      <<: &spree_3_1_env
+      <<: *spree_3_1_env
       RUBY_VERSION: 2.5.0
 
 workflows:
