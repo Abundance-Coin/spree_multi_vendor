@@ -5,7 +5,6 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_master.gemfile
-      BUNDLE_GEMFILE: $CIRCLE_STAGE
 
     docker:
       - image: circleci/ruby:2.4.3-node-browsers
