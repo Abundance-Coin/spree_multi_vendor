@@ -37,7 +37,9 @@ jobs:
           name: Install dependencies
           command: bundle check || bundle install
 
-      - run: ls -la ./vendor
+      - run: echo $PWD
+
+      # - run: ls -la ./vendor
       - run: ls -la /home/circleci/spree_multi_vendor/vendor/bundle
 
       - save_cache:
