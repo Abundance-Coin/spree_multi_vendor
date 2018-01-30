@@ -1,10 +1,10 @@
 version: 2
 jobs:
   spree_master: &default
-    working_directory: ~/spree_multi_vendor
-
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_master.gemfile
+
+    working_directory: ~/spree_multi_vendor
 
     docker:
       - image: circleci/ruby:2.4.3-node-browsers
@@ -17,14 +17,15 @@ jobs:
       - image: circleci/postgres:9.5
         environment:
           POSTGRES_USER: spree_user
+
     steps:
       - checkout
       - run: cp $BUNDLE_GEMFILE.lock ./Gemfile.lock
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          - v1-dependencies-
+          - v1-bundler-{{ checksum "Gemfile.lock" }}
+          - v1-bundler-
 
       - run: ls vendor/bundle
 
@@ -34,7 +35,7 @@ jobs:
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1-bundler-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
 
