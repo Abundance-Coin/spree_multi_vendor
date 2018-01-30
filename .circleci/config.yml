@@ -26,8 +26,8 @@ jobs:
       - checkout
 
       - run:
-        name: Copy correct Gemfile.lock
-        command: cp $BUNDLE_GEMFILE.lock ./Gemfile.lock
+          name: Copy correct Gemfile.lock
+          command: cp $BUNDLE_GEMFILE.lock ./Gemfile.lock
 
       - restore_cache:
           keys:
