@@ -31,23 +31,14 @@ jobs:
 
       - restore_cache:
           keys:
-          - v3-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
+          - v1-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
 
       - run:
           name: Install dependencies
-          command: bundle check &>/dev/null || bundle install
-
-      - run: echo $PWD
-
-      - run: bundle show spree
-
-      - run: ls -la .
-      # - run: ls -la ./vendor
-      # - run: ls -la vendor
-      # - run: ls -la /home/circleci/spree_multi_vendor/vendor/bundle
+          command: bundle check || bundle install
 
       - save_cache:
-          key: v3-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
+          key: v1-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
