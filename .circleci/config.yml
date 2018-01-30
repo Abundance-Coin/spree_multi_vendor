@@ -25,7 +25,7 @@ jobs:
     steps:
       - checkout
 
-      - run: ls -la .
+      - run: ls -la ./circleci
 
       - run:
           name: Copy correct Gemfile.lock
