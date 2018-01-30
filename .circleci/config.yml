@@ -12,7 +12,7 @@ jobs:
       - image: circleci/ruby:$RUBY_VERSION-node-browsers
         environment:
           RAILS_ENV: test
-          BUNDLE_PATH: vendor/bundle
+          BUNDLE_PATH: ../vendor/bundle # go up because BUNDLE_GEMFILE is in folder
           BUNDLE_JOBS: 4
           BUNDLE_RETRY: 3
           PGHOST: 127.0.0.1
@@ -27,7 +27,7 @@ jobs:
 
       - run:
           name: Copy correct Gemfile.lock
-          command: cp $BUNDLE_GEMFILE.lock ./Gemfile.lock
+          command: cp $BUNDLE_GEMFILE.lock Gemfile.lock
 
       - restore_cache:
           keys:
@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: bundle check --path=vendor/bundle &>/dev/null || bundle install --path=vendor/bundle
+          command: bundle check &>/dev/null || bundle install
 
       - run: echo $PWD
 
@@ -43,8 +43,8 @@ jobs:
 
       - run: ls -la .
       # - run: ls -la ./vendor
-      - run: ls -la vendor
-      - run: ls -la /home/circleci/spree_multi_vendor/vendor/bundle
+      # - run: ls -la vendor
+      # - run: ls -la /home/circleci/spree_multi_vendor/vendor/bundle
 
       - save_cache:
           key: v3-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
