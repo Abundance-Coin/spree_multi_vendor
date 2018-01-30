@@ -19,10 +19,10 @@ jobs:
           POSTGRES_USER: spree_user
     steps:
       - checkout
-      # - restore_cache:
-      #     keys:
-      #     - v1-dependencies-{{ checksum "gemfiles/spree_3_3.gemfile.lock" }}
-      #     - v1-dependencies-
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum .Environment.CIRCLE_STAGE + ".lock" }}
+          - v1-dependencies-
       - run:
           name: install dependencies
           command: |
