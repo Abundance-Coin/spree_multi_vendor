@@ -5,6 +5,7 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_master.gemfile
+      BUNDLE_GEMFILE: $CIRCLE_STAGE
 
     docker:
       - image: circleci/ruby:2.4.3-node-browsers
@@ -19,13 +20,10 @@ jobs:
           POSTGRES_USER: spree_user
     steps:
       - checkout
+      - run: cp {{ $BUNDLE_GEMFILE }}.lock Gemfile.lock
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum echo .Environment.CIRCLE_STAGE + ".lock" }}
-          - v1-dependencies-
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum ${.Environment.CIRCLE_STAGE}.lock }}
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
           - v1-dependencies-
       - run:
           name: install dependencies
