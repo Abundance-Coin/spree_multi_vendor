@@ -27,8 +27,6 @@ jobs:
           - v1-bundler-{{ checksum "Gemfile.lock" }}
           - v1-bundler-
 
-      - run: ls vendor/bundle
-
       - run:
           name: install dependencies
           command: |
@@ -38,8 +36,6 @@ jobs:
           key: v1-bundler-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
-
-      - run: ls vendor/bundle
 
       - run: bundle exec rake test_app
       - run: bundle exec rake
