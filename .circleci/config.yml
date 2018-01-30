@@ -40,7 +40,7 @@ jobs:
       - run: echo $PWD
 
       - run: ls -la .
-      - run: ls -la ./vendor
+      # - run: ls -la ./vendor
       - run: ls -la vendor
       - run: ls -la /home/circleci/spree_multi_vendor/vendor/bundle
 
