@@ -26,6 +26,7 @@ jobs:
       - checkout
 
       - run: ls -la .
+      - run: ls -la ..
 
       - run:
           name: Copy correct Gemfile.lock
