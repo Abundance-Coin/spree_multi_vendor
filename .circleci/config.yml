@@ -72,7 +72,7 @@ jobs:
     environment: &spree_3_2_env
       BUNDLE_GEMFILE: gemfiles/spree_3_2.gemfile
   spree_3_2_ruby_2_5:
-    <<: *spree_3_2_env
+    <<: *spree_master
     environment:
       <<: *spree_3_2_env
       RUBY_VERSION: 2.5.0
