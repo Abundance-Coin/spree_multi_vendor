@@ -33,8 +33,8 @@ jobs:
 
       - restore_cache:
           keys:
-          - v2-bundler-{{ checksum "Gemfile.lock" }}
-          - v2-bundler-
+          - v3-bundler-{{ checksum "Gemfile.lock" }}
+          - v3-bundler-
 
       - run:
           name: Install dependencies
@@ -43,9 +43,9 @@ jobs:
       - run: ls -la .
 
       - save_cache:
-          key: v2-bundler-{{ checksum "Gemfile.lock" }}
+          key: v3-bundler-{{ checksum "Gemfile.lock" }}
           paths:
-            - ~/spree_multi_vendor/vendor/bundle
+            - /home/circleci/spree_multi_vendor/vendor/bundle
 
       - run: bundle exec rake test_app
       - run: bundle exec rake
