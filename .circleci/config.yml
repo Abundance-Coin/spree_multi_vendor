@@ -39,8 +39,9 @@ jobs:
 
       - run: echo $PWD
 
-      # - run: ls -la ./vendor
-      - run: ls -la /home/circleci/spree_multi_vendor/vendor/bundle
+      - run: ls -la ..
+      - run: ls -la ../..
+      # - run: ls -la /home/circleci/spree_multi_vendor/vendor/bundle
 
       - save_cache:
           key: v2-bundler-{{ .Environment.CIRCLE_STAGE }}-{{ checksum "Gemfile.lock" }}
