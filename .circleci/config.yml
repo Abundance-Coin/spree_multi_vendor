@@ -41,14 +41,29 @@ jobs:
       - run: bundle exec rake test_app
       - run: bundle exec rake
 
+  spree_3_4:
+    <<: *default
+    environment:
+      BUNDLE_GEMFILE: gemfiles/spree_3_4.gemfile
   spree_3_3:
     <<: *default
     environment:
       BUNDLE_GEMFILE: gemfiles/spree_3_3.gemfile
+  spree_3_2:
+    <<: *default
+    environment:
+      BUNDLE_GEMFILE: gemfiles/spree_3_2.gemfile
+  spree_3_1:
+    <<: *default
+    environment:
+      BUNDLE_GEMFILE: gemfiles/spree_3_1.gemfile
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - spree_master
+      - spree_3_4
       - spree_3_3
+      - spree_3_2
+      - spree_3_1
