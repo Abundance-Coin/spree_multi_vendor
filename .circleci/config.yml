@@ -20,7 +20,7 @@ jobs:
           POSTGRES_USER: spree_user
     steps:
       - checkout
-      - run: cp {{ $BUNDLE_GEMFILE }}.lock Gemfile.lock
+      - run: cp $BUNDLE_GEMFILE.lock ./Gemfile.lock
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "Gemfile.lock" }}
