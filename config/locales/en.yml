@@ -15,6 +15,7 @@ en:
     edit_vendor: Edit Vendor
     new_vendor: New Vendor
     vendor_name: Vendor Name
+    vendor_settings: Vendor Settings
     vendor_states:
       active: Active
       blocked: Blocked

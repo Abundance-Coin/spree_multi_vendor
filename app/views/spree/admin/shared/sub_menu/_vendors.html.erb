@@ -1,0 +1,3 @@
+<ul data-hook="admin_vendors_sidebar_menu" class="collapse nav nav-pills nav-stacked" id="sidebar-vendors">
+  <%= configurations_sidebar_menu_item(Spree.t(:vendor_settings), spree.admin_vendor_settings_path) if can?(:update, Spree::Vendor) %>
+</ul>
