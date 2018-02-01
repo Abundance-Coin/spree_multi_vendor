@@ -18,6 +18,7 @@ en:
     vendor_settings: Settings
     vendor_inventory_upload: Inventory Upload
     vendor_inventory_blank: File can't be blank
+    vendor_inventory_success: Upload task successfully created
     vendor_states:
       active: Active
       blocked: Blocked

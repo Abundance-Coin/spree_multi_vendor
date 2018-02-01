@@ -10,7 +10,8 @@ module Spree
         @upload = Inventory::UploadFileAction.call(file_format, @file.path, upload_options: { vendor_id: @vendor.id })
 
         if (errors = @upload[:errors]).blank?
-          flash[:success] = 'Successfully uploaded'
+          flash[:success] = Spree.t(:vendor_inventory_success)
+          return redirect_to admin_uploads_path
         else
           flash[:error] = errors
         end

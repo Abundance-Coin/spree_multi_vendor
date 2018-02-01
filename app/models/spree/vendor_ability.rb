@@ -23,6 +23,7 @@ class Spree::VendorAbility
       apply_vendor_permissions
       apply_vendor_settings_permissions
       apply_vendor_inventory_permissions
+      apply_vendor_uploads_permissions
     end
   end
 
@@ -115,5 +116,10 @@ class Spree::VendorAbility
 
   def apply_vendor_inventory_permissions
     can :manage, :vendor_inventory
+  end
+
+  def apply_vendor_uploads_permissions
+    cannot :display, Spree::Upload
+    can :manage, Spree::Upload, vendor_id: @vendor_ids
   end
 end
