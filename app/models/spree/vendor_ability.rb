@@ -22,6 +22,7 @@ class Spree::VendorAbility
       apply_variant_permissions
       apply_vendor_permissions
       apply_vendor_settings_permissions
+      apply_vendor_inventory_permissions
     end
   end
 
@@ -110,5 +111,9 @@ class Spree::VendorAbility
 
   def apply_vendor_settings_permissions
     can :manage, :vendor_settings
+  end
+
+  def apply_vendor_inventory_permissions
+    can :manage, :vendor_inventory
   end
 end

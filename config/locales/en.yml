@@ -15,7 +15,9 @@ en:
     edit_vendor: Edit Vendor
     new_vendor: New Vendor
     vendor_name: Vendor Name
-    vendor_settings: Vendor Settings
+    vendor_settings: Settings
+    vendor_inventory_upload: Inventory Upload
+    vendor_inventory_blank: File can't be blank
     vendor_states:
       active: Active
       blocked: Blocked
