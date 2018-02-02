@@ -31,7 +31,7 @@ RSpec.configure do |config|
     expectations.syntax = :expect
   end
 
-  config.before :each do
+  config.before do
     Rails.cache.clear
   end
 end

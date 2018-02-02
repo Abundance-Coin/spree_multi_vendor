@@ -8,9 +8,9 @@ module Spree
         vendors = super.order(name: :asc)
         @search = vendors.ransack(params[:q])
 
-        @collection = @search.result.
-                      page(params[:page]).
-                      per(params[:per_page])
+        @collection = @search.result
+                             .page(params[:page])
+                             .per(params[:per_page])
       end
     end
   end

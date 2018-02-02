@@ -1,5 +1,5 @@
 Spree::Admin::ProductsController.class_eval do
-  before_action :set_vendor_id, only: [:create, :update]
+  before_action :set_vendor_id, only: %i[create update]
 
   def stock
     @variants = @product.variants.includes(*variant_stock_includes)

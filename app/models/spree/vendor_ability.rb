@@ -35,7 +35,7 @@ class Spree::VendorAbility
 
   def apply_order_permissions
     cannot :create, Spree::Order
-    can [:admin, :index, :edit, :update], Spree::Order, line_items: { variant: { vendor_id: @vendor_ids } }
+    can %i[admin index edit update], Spree::Order, line_items: { variant: { vendor_id: @vendor_ids }}
   end
 
   def apply_image_permissions
@@ -87,7 +87,7 @@ class Spree::VendorAbility
   end
 
   def apply_stock_item_permissions
-    can [:admin, :modify, :read], Spree::StockItem, stock_location: { vendor_id: @vendor_ids }
+    can %i[admin modify read], Spree::StockItem, stock_location: { vendor_id: @vendor_ids }
   end
 
   def apply_stock_location_permissions
@@ -97,7 +97,7 @@ class Spree::VendorAbility
 
   def apply_stock_movement_permissions
     can :create, Spree::StockMovement
-    can :manage, Spree::StockMovement, stock_item: { stock_location: { vendor_id: @vendor_ids } }
+    can :manage, Spree::StockMovement, stock_item: { stock_location: { vendor_id: @vendor_ids }}
   end
 
   def apply_variant_permissions
@@ -107,7 +107,7 @@ class Spree::VendorAbility
   end
 
   def apply_vendor_permissions
-    can [:admin, :update], Spree::Vendor, id: @vendor_ids
+    can %i[admin update], Spree::Vendor, id: @vendor_ids
   end
 
   def apply_vendor_settings_permissions

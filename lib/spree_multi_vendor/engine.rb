@@ -9,7 +9,7 @@ module SpreeMultiVendor
       g.test_framework :rspec
     end
 
-    initializer "spree_multi_vendor.register_vendor_abilities" do
+    initializer 'spree_multi_vendor.register_vendor_abilities' do
       Spree::Ability.register_ability(Spree::VendorAbility)
     end
 
@@ -19,6 +19,6 @@ module SpreeMultiVendor
       end
     end
 
-    config.to_prepare &method(:activate).to_proc
+    config.to_prepare(&method(:activate).to_proc)
   end
 end

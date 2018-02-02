@@ -13,8 +13,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each, :js) do
-    if Capybara.javascript_driver == :selenium
-      page.driver.browser.manage.window.maximize
-    end
+    page.driver.browser.manage.window.maximize if Capybara.javascript_driver == :selenium
   end
 end

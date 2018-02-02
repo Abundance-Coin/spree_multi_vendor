@@ -18,7 +18,7 @@ describe Spree::Vendor do
 
   describe 'initial state' do
     it 'initial state should be pending' do
-      should be_pending
+      is_expected.to be_pending
     end
   end
 

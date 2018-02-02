@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.feature 'Admin Products', :js do
+RSpec.describe 'Admin Products', :js do
   let(:vendor) { create(:vendor) }
   let!(:user) { create(:user, vendors: [vendor]) }
   let!(:admin) { create(:admin_user) }
@@ -13,14 +13,14 @@ RSpec.feature 'Admin Products', :js do
     before { login_as(admin, scope: :spree_user) }
 
     context 'index' do
-      scenario 'displays all products' do
+      it 'displays all products' do
         visit spree.admin_products_path
         expect(page).to have_selector('tr', count: 3)
       end
     end
 
     context 'create variant' do
-      scenario 'creates new variant with vendor id assigned' do
+      it 'creates new variant with vendor id assigned' do
         visit spree.admin_product_variants_path(vendor_product)
         click_link 'New Variant'
         select 'S'
@@ -32,19 +32,19 @@ RSpec.feature 'Admin Products', :js do
   end
 
   context 'for user with vendor' do
-    before(:each) do
+    before do
       login_as(user, scope: :spree_user)
       visit spree.admin_products_path
     end
 
     context 'index' do
-      scenario 'displays only vendor product' do
+      it 'displays only vendor product' do
         expect(page).to have_selector('tr', count: 2)
       end
     end
 
     context 'create product' do
-      scenario 'can create a new product' do
+      it 'can create a new product' do
         click_link 'New Product'
         expect(current_path).to eq spree.new_admin_product_path
 
@@ -61,19 +61,19 @@ RSpec.feature 'Admin Products', :js do
     end
 
     context 'edit product' do
-      before(:each) do
+      before do
         within_row(1) { click_icon :edit }
         expect(current_path).to eq spree.edit_admin_product_path(vendor_product)
       end
 
-      scenario 'can update an existing product' do
+      it 'can update an existing product' do
         fill_in 'product_name', with: 'Testing edit'
         click_button 'Update'
         expect(page).to have_text 'successfully updated!'
         expect(page).to have_text 'Testing edit'
       end
 
-      scenario 'can update product master price' do
+      it 'can update product master price' do
         fill_in 'product_price', with: 123
         click_button 'Update'
         expect(page).to have_text 'successfully updated!'
@@ -81,7 +81,7 @@ RSpec.feature 'Admin Products', :js do
         expect(vendor_product.price).to eq 123
       end
 
-      scenario 'shows validation error with blank name' do
+      it 'shows validation error with blank name' do
         fill_in 'product_name', with: ''
         click_button 'Update'
         expect(page).to have_text 'Name can\'t be blank'
@@ -89,7 +89,7 @@ RSpec.feature 'Admin Products', :js do
     end
 
     context 'create product property' do
-      scenario 'can create new product property' do
+      it 'can create new product property' do
         visit spree.admin_product_product_properties_path(vendor_product)
         fill_in 'product[product_properties_attributes][0][property_name]', with: 'Testing edit'
         click_button 'Update'
@@ -99,7 +99,7 @@ RSpec.feature 'Admin Products', :js do
     end
 
     context 'create variant' do
-      scenario 'can create new variant' do
+      it 'can create new variant' do
         visit spree.admin_product_variants_path(vendor_product)
         click_link 'New Variant'
         select 'S'

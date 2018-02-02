@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.feature 'Admin Option Types', :js do
+RSpec.describe 'Admin Option Types', :js do
   let(:vendor) { create(:vendor) }
   let!(:user) { create(:user, vendors: [vendor]) }
   let!(:admin) { create(:admin_user) }
@@ -9,7 +9,7 @@ RSpec.feature 'Admin Option Types', :js do
 
   context 'for user with admin role' do
     context 'index' do
-      scenario 'displays all option types' do
+      it 'displays all option types' do
         login_as(admin, scope: :spree_user)
         visit spree.admin_option_types_path
         expect(page).to have_selector('tr', count: 3)
@@ -18,19 +18,19 @@ RSpec.feature 'Admin Option Types', :js do
   end
 
   context 'for user with vendor' do
-    before(:each) do
+    before do
       login_as(user, scope: :spree_user)
       visit spree.admin_option_types_path
     end
 
     context 'index' do
-      scenario 'displays only vendor option type' do
+      it 'displays only vendor option type' do
         expect(page).to have_selector('tr', count: 2)
       end
     end
 
     context 'create' do
-      scenario 'can create a new option type' do
+      it 'can create a new option type' do
         click_link 'New Option Type'
         expect(current_path).to eq spree.new_admin_option_type_path
 
@@ -46,19 +46,19 @@ RSpec.feature 'Admin Option Types', :js do
     end
 
     context 'edit' do
-      before(:each) do
+      before do
         within_row(1) { click_icon :edit }
         expect(current_path).to eq spree.edit_admin_option_type_path(vendor_option_type)
       end
 
-      scenario 'can update an existing option type' do
+      it 'can update an existing option type' do
         fill_in 'option_type_name', with: 'Testing edit'
         click_button 'Update'
         expect(page).to have_text 'successfully updated!'
         expect(page).to have_text 'Testing edit'
       end
 
-      scenario 'shows validation error with blank name' do
+      it 'shows validation error with blank name' do
         fill_in 'option_type_name', with: ''
         click_button 'Update'
         expect(page).to have_text 'Name can\'t be blank'
