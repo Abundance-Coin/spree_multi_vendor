@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :vendor, class: Spree::Vendor do
-    name 'Test vendor'
+    name { FFaker::Company.name }
 
     factory :active_vendor do
       name 'Active vendor'
