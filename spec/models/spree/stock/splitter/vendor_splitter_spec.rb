@@ -5,18 +5,24 @@ describe Spree::Stock::Splitter::VendorSplitter, type: :model do
     described_class.new(packer).split(packages)
   end
 
-  let(:variant1) { create(:variant, vendor: vendor1) }
-  let(:variant2) { create(:variant, vendor: vendor2) }
-  let(:vendor1) { create(:vendor) }
-  let(:vendor2) { create(:vendor) }
-
-  let(:inventory_unit1) { build_stubbed(:inventory_unit, variant: variant1) }
-  let(:inventory_unit2) { build_stubbed(:inventory_unit, variant: variant2) }
-
   let(:packer) { build(:stock_packer) }
 
   let(:packages) { [package1] }
   let(:package1) { Spree::Stock::Package.new(packer.stock_location) }
+
+  let(:variant1) { create(:variant, vendor: vendor1) }
+  let(:vendor1) { create(:vendor) }
+  let(:variant2) { create(:variant, vendor: vendor2) }
+  let(:vendor2) { create(:vendor) }
+
+  # these inventory_unit methods are working 2x faster than build_stubbed
+  def inventory_unit1
+    Spree::InventoryUnit.new(variant: variant1)
+  end
+
+  def inventory_unit2
+    Spree::InventoryUnit.new(variant: variant2)
+  end
 
   before do
     4.times { package1.add(inventory_unit1) }

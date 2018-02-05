@@ -20,8 +20,8 @@ module Spree
           grouped_packages.values.map(&method(:build_package))
         end
 
+        # optimization: save variant -> vendor correspondence
         def vendor_for_item(item)
-          # optimization: save variant -> vendor correspondence to instance variable
           @item_vendor ||= {}
           @item_vendor[item.inventory_unit.variant_id] ||= item.variant.vendor_id
         end
