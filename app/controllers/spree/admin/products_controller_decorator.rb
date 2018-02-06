@@ -4,7 +4,7 @@ Spree::Admin::ProductsController.class_eval do
   def stock
     @variants = @product.variants.includes(*variant_stock_includes)
     @variants = [@product.master] if @variants.empty?
-    @stock_locations = Spree::StockLocation.accessible_by(current_ability, :read).where(vendor_id: @product.vendor_id)
+    @stock_locations = Spree::StockLocation.accessible_by(current_ability, :read)
     if @stock_locations.empty?
       flash[:error] = Spree.t(:stock_management_requires_a_stock_location)
       redirect_to admin_stock_locations_path
