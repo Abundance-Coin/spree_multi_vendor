@@ -4,7 +4,7 @@ RSpec.describe 'Admin Vendor Settings', :js do
   let(:vendor) { create(:vendor) }
   let(:user) { create(:user, vendors: [vendor]) }
 
-  context 'edit' do
+  describe '#edit' do
     before do
       login_as(user, scope: :spree_user)
       visit spree.admin_vendor_settings_path

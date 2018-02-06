@@ -21,7 +21,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = false
   config.fail_fast = false
-  config.filter_run focus: true
+  config.filter_run :focus
   config.run_all_when_everything_filtered = true
 
   config.infer_spec_type_from_file_location!
@@ -34,6 +34,9 @@ RSpec.configure do |config|
   config.before do
     Rails.cache.clear
   end
+
+  config.order = :random
+  Kernel.srand(config.seed)
 end
 
 Dir[File.join(File.dirname(__FILE__), '/support/**/*.rb')].each { |file| require file }

@@ -5,9 +5,6 @@ module Spree
     validates :name, presence: true, uniqueness: { case_sensitive: false }
 
     with_options dependent: :destroy do
-      has_many :option_types
-      has_many :products
-      has_many :properties
       has_many :shipping_methods
       has_many :stock_locations
       has_many :variants

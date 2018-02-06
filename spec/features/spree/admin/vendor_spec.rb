@@ -9,7 +9,7 @@ RSpec.describe 'Admin Vendors', :js do
     visit spree.admin_vendors_path
   end
 
-  context 'index' do
+  describe '#index' do
     it 'displays existing vendors' do
       within_row(1) do
         expect(column_text(1)).to eq 'My vendor'
@@ -18,10 +18,10 @@ RSpec.describe 'Admin Vendors', :js do
     end
   end
 
-  context 'create' do
+  describe '#create' do
     it 'can create a new vendor' do
       click_link 'New Vendor'
-      expect(current_path).to eq spree.new_admin_vendor_path
+      expect(page).to have_current_path spree.new_admin_vendor_path
 
       fill_in 'vendor_name', with: 'Test'
       select 'Blocked'
@@ -29,12 +29,12 @@ RSpec.describe 'Admin Vendors', :js do
       click_button 'Create'
 
       expect(page).to have_text 'successfully created!'
-      expect(current_path).to eq spree.admin_vendors_path
+      expect(page).to have_current_path spree.admin_vendors_path
     end
 
     it 'shows validation error with blank name' do
       click_link 'New Vendor'
-      expect(current_path).to eq spree.new_admin_vendor_path
+      expect(page).to have_current_path spree.new_admin_vendor_path
 
       fill_in 'vendor_name', with: ''
       click_button 'Create'
@@ -44,7 +44,7 @@ RSpec.describe 'Admin Vendors', :js do
 
     it 'shows validation error with repeated name' do
       click_link 'New Vendor'
-      expect(current_path).to eq spree.new_admin_vendor_path
+      expect(page).to have_current_path spree.new_admin_vendor_path
 
       fill_in 'vendor_name', with: 'My vendor'
       click_button 'Create'
@@ -53,10 +53,9 @@ RSpec.describe 'Admin Vendors', :js do
     end
   end
 
-  context 'edit' do
+  describe '#edit' do
     before do
       within_row(1) { click_icon :edit }
-      expect(current_path).to eq spree.edit_admin_vendor_path(1)
     end
 
     it 'can update an existing vendor' do

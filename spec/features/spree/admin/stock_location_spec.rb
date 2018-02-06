@@ -2,13 +2,16 @@ require 'spec_helper'
 
 RSpec.describe 'Admin Stock Locations', :js do
   let(:vendor) { create(:vendor) }
-  let!(:product) { create(:product, vendor_id: vendor.id, name: 'Test') }
   let!(:user) { create(:user, vendors: [vendor]) }
   let!(:admin) { create(:admin_user) }
-  let!(:stock_location) { create(:stock_location, name: 'Test') }
 
-  context 'for user with admin role' do
-    context 'index' do
+  before do
+    create(:product, name: 'Test')
+    create(:stock_location, name: 'Test')
+  end
+
+  context 'when user with admin role' do
+    describe '#index' do
       it 'displays all stock locations' do
         login_as(admin, scope: :spree_user)
         visit spree.admin_stock_locations_path
@@ -17,28 +20,28 @@ RSpec.describe 'Admin Stock Locations', :js do
     end
   end
 
-  context 'for user with vendor' do
+  context 'when user with vendor' do
     before do
       login_as(user, scope: :spree_user)
       visit spree.admin_stock_locations_path
     end
 
-    context 'index' do
+    describe '#index' do
       it 'displays only vendor stock location' do
         expect(page).to have_selector('tr', count: 2)
       end
     end
 
-    context 'stock movements' do
+    describe 'stock movements' do
       it 'displays stock movements for vendor stock location' do
         click_on 'Stock Movements'
-        expect(page).to have_text 'Stock Movements for Test vendor'
+        expect(page).to have_text "Stock Movements for #{vendor.name}"
       end
 
       it 'can create a new stock movement for vendor stock location' do
         click_on 'Stock Movements'
         click_on 'New Stock Movement'
-        expect(current_path).to eq spree.new_admin_stock_location_stock_movement_path(vendor.stock_locations.first)
+        expect(page).to have_current_path spree.new_admin_stock_location_stock_movement_path(vendor.stock_locations.first)
 
         fill_in 'stock_movement_quantity', with: 5
         fill_in 'stock_movement_stock_item_id', with: 1
@@ -50,25 +53,24 @@ RSpec.describe 'Admin Stock Locations', :js do
       end
     end
 
-    context 'create' do
+    describe '#create' do
       it 'can create a new stock location' do
         click_link 'New Stock Location'
-        expect(current_path).to eq spree.new_admin_stock_location_path
+        expect(page).to have_current_path spree.new_admin_stock_location_path
 
         fill_in 'stock_location_name', with: 'Vendor stock location'
 
         click_button 'Create'
 
         expect(page).to have_text 'successfully created!'
-        expect(current_path).to eq spree.admin_stock_locations_path
+        expect(page).to have_current_path spree.admin_stock_locations_path
         expect(Spree::StockLocation.last.vendor_id).to eq vendor.id
       end
     end
 
-    context 'edit' do
+    describe '#edit' do
       before do
         within_row(1) { click_icon :edit }
-        expect(current_path).to eq spree.edit_admin_stock_location_path(vendor.stock_locations.first)
       end
 
       it 'can update an existing stock location' do

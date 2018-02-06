@@ -3,7 +3,8 @@ require 'spec_helper'
 RSpec.describe 'Spree::Inventory::Providers::DefaultVariantProviderDecorator', type: :action do
   subject(:variant) { Spree::Inventory::Providers::DefaultVariantProvider.call(item_json, options: options) }
 
-  let(:options) { { vendor_id: 1 } }
+  let(:vendor) { create(:vendor) }
+  let(:options) { { vendor_id: vendor.id } }
   let(:item_json) do
     {
       ean: '9780979728303',

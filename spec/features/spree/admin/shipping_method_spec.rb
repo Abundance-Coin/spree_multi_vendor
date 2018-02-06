@@ -4,11 +4,14 @@ RSpec.describe 'Admin Shipping Methods', :js do
   let(:vendor) { create(:vendor) }
   let!(:user) { create(:user, vendors: [vendor]) }
   let!(:admin) { create(:admin_user) }
-  let!(:shipping_method) { create(:shipping_method, name: 'Test') }
-  let!(:vendor_shipping_method) { create(:shipping_method, name: 'Test', vendor: vendor) }
 
-  context 'for user with admin role' do
-    context 'index' do
+  before do
+    create(:shipping_method, name: 'Test')
+    create(:shipping_method, name: 'Test', vendor: vendor)
+  end
+
+  context 'when user with admin role' do
+    describe '#index' do
       it 'displays all shipping methods' do
         login_as(admin, scope: :spree_user)
         visit spree.admin_shipping_methods_path
@@ -17,22 +20,22 @@ RSpec.describe 'Admin Shipping Methods', :js do
     end
   end
 
-  context 'for user with vendor' do
+  context 'when user with vendor' do
     before do
       login_as(user, scope: :spree_user)
       visit spree.admin_shipping_methods_path
     end
 
-    context 'index' do
+    describe '#index' do
       it 'displays only vendor shipping method' do
         expect(page).to have_selector('tr', count: 2)
       end
     end
 
-    context 'create' do
+    describe '#create' do
       it 'can create a new shipping method' do
         click_link 'New Shipping Method'
-        expect(current_path).to eq spree.new_admin_shipping_method_path
+        expect(page).to have_current_path spree.new_admin_shipping_method_path
 
         fill_in 'shipping_method_name', with: 'Vendor shipping method'
         check Spree::ShippingCategory.last.name
@@ -40,15 +43,14 @@ RSpec.describe 'Admin Shipping Methods', :js do
         click_button 'Create'
 
         expect(page).to have_text 'successfully created!'
-        expect(current_path).to eq spree.edit_admin_shipping_method_path(Spree::ShippingMethod.last)
+        expect(page).to have_current_path spree.edit_admin_shipping_method_path(Spree::ShippingMethod.last)
         expect(Spree::ShippingMethod.last.vendor_id).to eq vendor.id
       end
     end
 
-    context 'edit' do
+    describe '#edit' do
       before do
         within_row(1) { click_icon :edit }
-        expect(current_path).to eq spree.edit_admin_shipping_method_path(vendor.shipping_methods.first)
       end
 
       it 'can update an existing shipping method' do

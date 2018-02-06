@@ -8,12 +8,8 @@ class Spree::VendorAbility
       apply_classifications_permissions
       apply_order_permissions
       apply_image_permissions
-      apply_option_type_permissions
       apply_price_permissions
-      apply_product_option_type_permissions
       apply_product_permissions
-      apply_product_properties_permissions
-      apply_properties_permissions
       apply_shipping_methods_permissions
       apply_stock_permissions
       apply_stock_item_permissions
@@ -46,35 +42,13 @@ class Spree::VendorAbility
     end
   end
 
-  def apply_option_type_permissions
-    cannot :display, Spree::OptionType
-    can :manage, Spree::OptionType, vendor_id: @vendor_ids
-    can :create, Spree::OptionType
-  end
-
   def apply_price_permissions
     can :modify, Spree::Price, variant: { vendor_id: @vendor_ids }
-  end
-
-  def apply_product_option_type_permissions
-    can :modify, Spree::ProductOptionType, product: { vendor_id: @vendor_ids }
   end
 
   def apply_product_permissions
     cannot :display, Spree::Product
     can :manage, Spree::Product, variants: { vendor_id: @vendor_ids }
-    can :create, Spree::Product
-  end
-
-  def apply_properties_permissions
-    cannot :display, Spree::Property
-    can :manage, Spree::Property, vendor_id: @vendor_ids
-    can :create, Spree::Property
-  end
-
-  def apply_product_properties_permissions
-    cannot :display, Spree::ProductProperty
-    can :manage, Spree::ProductProperty, property: { vendor_id: @vendor_ids }
   end
 
   def apply_shipping_methods_permissions

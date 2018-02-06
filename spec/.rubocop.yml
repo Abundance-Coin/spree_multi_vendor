@@ -11,6 +11,12 @@ RSpec/NestedGroups:
 RSpec/MultipleExpectations:
   Max: 5
 
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/DescribeClass:
+  Enabled: false
+
 RSpec/AnyInstance:
   Enabled: false
 
