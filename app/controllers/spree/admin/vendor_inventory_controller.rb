@@ -6,10 +6,9 @@ module Spree
       before_action :load_and_validate_file, only: :upload
 
       def upload
-        file_format = extract_content_format(@file.content_type)
-        @upload = Inventory::UploadFileAction.call(file_format, @file.path, upload_options: { vendor_id: @vendor.id })
+        upload = Inventory::UploadFileAction.call(file_format, @file_path, upload_options: { vendor_id: @vendor.id })
 
-        if (errors = @upload[:errors]).blank?
+        if (errors = upload[:errors]).blank?
           flash[:success] = Spree.t(:vendor_inventory_success)
           return redirect_to admin_uploads_path
         else
@@ -30,8 +29,8 @@ module Spree
       end
 
       def load_and_validate_file
-        if (attachment = inventory_params['attachment']).present?
-          @file = save_content(attachment)
+        if (@attachment = inventory_params['attachment']).present?
+          save_content
         else
           flash[:error] = Spree.t(:vendor_inventory_blank)
           redirect_to admin_vendor_inventory_path
@@ -39,18 +38,16 @@ module Spree
       end
 
       def save_content
-        file = File.open("/tmp/#{SecureRandom.urlsafe_base64}", 'w')
-        file.write(inventory_params['content'])
-        file.close
-        file
+        @file_path = File.join('tmp', 'uploads', SecureRandom.urlsafe_base64)
+        FileUtils.move(@attachment.tempfile.path, @file_path)
       end
 
       def inventory_params
         params.fetch(:inventory, {}).permit(:attachment)
       end
 
-      def extract_content_format(content_type)
-        content_type.split('/').last
+      def file_format
+        @attachment.content_type.split('/').last
       end
     end
   end
