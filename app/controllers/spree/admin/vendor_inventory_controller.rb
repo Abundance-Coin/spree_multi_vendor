@@ -30,9 +30,19 @@ module Spree
       end
 
       def load_and_validate_file
-        return if (@file = inventory_params['attachment']).present?
-        flash[:error] = Spree.t(:vendor_inventory_blank)
-        redirect_to admin_vendor_inventory_path
+        if (attachment = inventory_params['attachment']).present?
+          @file = save_content(attachment)
+        else
+          flash[:error] = Spree.t(:vendor_inventory_blank)
+          redirect_to admin_vendor_inventory_path
+        end
+      end
+
+      def save_content
+        file = File.open("/tmp/#{SecureRandom.urlsafe_base64}", 'w')
+        file.write(inventory_params['content'])
+        file.close
+        file
       end
 
       def inventory_params
