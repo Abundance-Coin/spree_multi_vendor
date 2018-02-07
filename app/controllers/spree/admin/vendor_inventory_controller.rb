@@ -38,6 +38,7 @@ module Spree
       end
 
       def save_content
+        FileUtils.mkdir_p('tmp/uploads')
         @file_path = File.join('tmp', 'uploads', SecureRandom.urlsafe_base64)
         FileUtils.move(@attachment.tempfile.path, @file_path)
       end
