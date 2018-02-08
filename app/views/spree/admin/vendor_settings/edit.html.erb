@@ -4,19 +4,7 @@
 
 <%= form_for [:admin, @vendor], url: admin_vendor_settings_url do |f| %>
   <fieldset>
-    <%= render partial: 'spree/shared/error_messages', locals: { target: @vendor } %>
-
-    <div class='form-group'>
-      <%= f.field_container :name do %>
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
-      <% end %>
-
-      <%= f.field_container :note do %>
-        <%= f.label :note %>
-        <%= f.text_field :note, class: 'form-control' %>
-      <% end %>
-    </div>
+    <%= render partial: 'spree/admin/vendors/form', locals: { f: f } %>
 
     <div class='form-actions' data-hook='buttons'>
       <%= button Spree.t('actions.update'), 'save' %>

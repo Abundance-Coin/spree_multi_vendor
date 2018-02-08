@@ -1,4 +1,5 @@
 <%= render partial: 'spree/shared/error_messages', locals: { target: @vendor } %>
+
 <div class="form-group">
   <%= f.field_container :name do %>
     <%= f.label :name %>
@@ -10,10 +11,12 @@
     <%= f.text_field :note, class: 'form-control' %>
   <% end %>
 
-  <%= f.field_container :state do %>
-    <%= f.label :state %>
-    <%= f.select :state,
-      options_for_select(Spree::Vendor.state_machines[:state].states.collect { |s| [Spree.t("vendor_states.#{s.name}"), s.value] }, selected: @vendor.state),
-      {}, class: 'select2' %>
+  <% if can?(:manage, Spree::Vendor) %>
+    <%= f.field_container :state do %>
+      <%= f.label :state %>
+      <%= f.select :state,
+        options_for_select(Spree::Vendor.state_machines[:state].states.collect { |s| [Spree.t("vendor_states.#{s.name}"), s.value] }, selected: @vendor.state),
+        {}, class: 'select2' %>
+    <% end %>
   <% end %>
 </div>

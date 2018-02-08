@@ -3,9 +3,25 @@
   <%= @vendor.name %>
 <% end %>
 
-<%= form_for [:admin, @vendor] do |f| %>
-  <fieldset>
-    <%= render partial: 'form', locals: { f: f } %>
-    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
-  </fieldset>
+<div data-hook='admin_vendor_edit_general_settings' class='panel panel-default'>
+  <div class='panel-heading'>
+    <h1 class='panel-title'>
+      <%= Spree.t(:general_settings) %>
+    </h1>
+  </div>
+
+  <div class='panel-body'>
+    <div data-hook='admin_vendor_edit_form'>
+      <%= form_for [:admin, @vendor] do |f| %>
+        <fieldset>
+          <%= render partial: 'form', locals: { f: f } %>
+          <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if can?(:manage, Spree::User) %>
+  <%= render partial: 'vendor_users_list', locals: { users: @vendor.users } %>
 <% end %>

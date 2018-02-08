@@ -1,0 +1,25 @@
+<div data-hook='admin_vendor_vendor_user_list' class='panel panel-default'>
+  <div class='panel-heading'>
+    <h1 class='panel-title'>
+      <%= Spree.t(:vendor_user_list) %>
+    </h1>
+  </div>
+
+  <div class='panel-body'>
+    <% if users.any? %>
+      <table class='table'>
+        <tbody>
+          <% users.each do |user|%>
+            <tr>
+              <td class='user_email'><%=link_to user.email, edit_admin_user_url(user) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class='alert alert-info no-objects-found'>
+        <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree.user_class)) %>,
+      </div>
+    <% end %>
+  </div>
+</div>

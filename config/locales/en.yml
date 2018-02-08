@@ -19,6 +19,7 @@ en:
     vendor_inventory_upload: Inventory Upload
     vendor_inventory_blank: File can't be blank
     vendor_inventory_success: Upload task successfully created
+    vendor_user_list: Users assigned to vendor
     vendor_states:
       active: Active
       blocked: Blocked
