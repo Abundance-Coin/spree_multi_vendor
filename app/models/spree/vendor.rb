@@ -8,6 +8,7 @@ module Spree
       has_many :shipping_methods
       has_many :stock_locations
       has_many :variants
+      has_many :products, through: :variants
       has_many :vendor_users
     end
 

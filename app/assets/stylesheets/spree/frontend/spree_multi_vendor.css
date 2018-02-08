@@ -1,0 +1,17 @@
+.vendor-page-info {
+  font-weight: 600;
+  text-align: center;
+}
+
+.vendor-page-info-name {
+  font-size: 16px;
+  margin: 7px 0;
+}
+
+.vendor-page-info-note {
+  font-size: 12px;
+}
+
+.vendor-page-content-title {
+  margin-top: 0;
+}

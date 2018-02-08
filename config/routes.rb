@@ -6,4 +6,6 @@ Spree::Core::Engine.routes.draw do
     get 'vendor_inventory' => 'vendor_inventory#index'
     post 'vendor_inventory' => 'vendor_inventory#upload'
   end
+
+  resources :vendors, only: [:show]
 end

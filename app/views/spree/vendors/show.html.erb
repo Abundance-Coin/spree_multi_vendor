@@ -1,0 +1,19 @@
+<h4>
+  <%= link_to(:back) do %>
+    &lt; Back
+  <% end %>
+</h4>
+
+<div class='row vendor-page'>
+  <div class='col-md-3'>
+    <%= render partial: 'vendor_sidebar', locals: { vendor: @vendor } %>
+  </div>
+
+  <div class='col-md-9'>
+    <div class='vendor-page-content'>
+      <h3 class='vendor-page-content-title'>Products:</h3>
+      <%= render partial: 'spree/shared/products', locals: { products: @vendor.products } %>
+    </div>
+  </div>
+</div>
+
