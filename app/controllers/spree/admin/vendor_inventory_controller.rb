@@ -3,19 +3,30 @@ module Spree
     class VendorInventoryController < Spree::Admin::BaseController
       before_action :authorize
       before_action :load_vendor
-      before_action :load_and_validate_file, only: :upload
+      before_action :load_and_validate_file, only: :upload, if: -> { request.post? }
+
+      def index
+        @collection = Spree::Variant.where(vendor_id: current_spree_vendor.id)
+                                    .includes(:product)
+                                    .joins(:stock_items)
+                                    .select('spree_variants.*, spree_stock_items.count_on_hand as count_on_hand')
+      end
 
       def upload
-        upload = Inventory::UploadFileAction.call(file_format, @file_path, upload_options: { vendor_id: @vendor.id })
+        if request.post?
+          upload = Inventory::UploadFileAction.call(file_format, @file_path, upload_options: { vendor_id: @vendor.id })
 
-        if (errors = upload[:errors]).blank?
-          flash[:success] = Spree.t(:vendor_inventory_success)
-          return redirect_to admin_uploads_path
+          if (errors = upload[:errors]).blank?
+            flash[:success] = Spree.t(:vendor_inventory_success)
+            return redirect_to admin_uploads_path
+          else
+            flash[:error] = errors
+          end
+
+          redirect_to admin_vendor_inventory_upload_path
         else
-          flash[:error] = errors
+          render :upload
         end
-
-        redirect_to admin_vendor_inventory_path
       end
 
       private
@@ -33,7 +44,7 @@ module Spree
           save_content
         else
           flash[:error] = Spree.t(:vendor_inventory_blank)
-          redirect_to admin_vendor_inventory_path
+          redirect_to admin_vendor_inventory_upload_path
         end
       end
 

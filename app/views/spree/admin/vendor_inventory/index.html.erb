@@ -1,0 +1,32 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:vendor_inventory) %>
+<% end %>
+
+<% if @collection.any? %>
+  <table class="table">
+    <thead>
+      <tr data-hook="vendors_header">
+        <th><%= Spree.t(:sku) %></th>
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:count_on_hand) %></th>
+        <th data-hook="admin_variants_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @collection.each do |variant| %>
+        <tr>
+          <td><%= variant.sku %></td>
+          <td><%= variant.product.name %></td>
+          <td><%= variant.count_on_hand %></td>
+          <td class="actions actions-3 text-right" data-hook="admin_variants_index_row_actions">
+            <%= link_to('Edit', spree.edit_admin_product_variant_path(variant.product, variant)) if can?(:edit, variant) && !variant.deleted? %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: 'Inventory') %>
+  </div>
+<% end %>

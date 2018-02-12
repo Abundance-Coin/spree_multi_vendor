@@ -1,5 +1,5 @@
 <div>
-  <%= form_for(:inventory, :url => admin_vendor_inventory_path, :method => :post, :multipart => true ) do |f| %>
+  <%= form_for(:inventory, url: admin_vendor_inventory_upload_path, method: :post, multipart: true ) do |f| %>
     <fieldset>
       <p class="form-buttons">
         <%= f.field_container :file do %>
