@@ -5,6 +5,9 @@ AllCops:
     - '**/Gemfile'
     - '**/Rakefile'
 
+Rails:
+  Enabled: true
+
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
   EnforcedStyle: compact
