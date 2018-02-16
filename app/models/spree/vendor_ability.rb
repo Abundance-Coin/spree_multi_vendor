@@ -49,6 +49,7 @@ class Spree::VendorAbility
   def apply_product_permissions
     cannot :display, Spree::Product
     can :manage, Spree::Product, variants: { vendor_id: @vendor_ids }
+    can :create, Spree::Product
   end
 
   def apply_shipping_methods_permissions
