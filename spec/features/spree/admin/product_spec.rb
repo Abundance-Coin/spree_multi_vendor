@@ -60,7 +60,7 @@ RSpec.describe 'Admin Products', :js do
         expect(page).to have_text 'Testing edit'
       end
 
-      it 'can update product master price' do
+      xit 'can update product master price' do
         fill_in 'product_price', with: 123
         click_button 'Update'
         expect(page).to have_text 'successfully updated!'
