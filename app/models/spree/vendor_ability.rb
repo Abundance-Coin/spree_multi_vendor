@@ -30,7 +30,6 @@ class Spree::VendorAbility
   end
 
   def apply_order_permissions
-    cannot :create, Spree::Order
     can %i[admin index edit update], Spree::Order, line_items: { variant: { vendor_id: @vendor_ids }}
   end
 
