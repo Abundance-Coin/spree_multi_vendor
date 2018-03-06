@@ -8,10 +8,17 @@ module Spree
 
     respond_to :html
 
+    def show
+      @products = @vendor.products
+                         .distinct
+                         .page(params[:page])
+                         .per(Spree::Config[:products_per_page])
+    end
+
     private
 
     def load_vendor
-      @vendor = Spree::Vendor.find_by(id: params[:id])
+      @vendor = Spree::Vendor.find(params[:id])
     end
   end
 end
