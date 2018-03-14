@@ -7,6 +7,8 @@ class Spree::VendorAbility
     if @vendor_ids.any?
       apply_classifications_permissions
       apply_order_permissions
+      apply_payment_permissions
+      apply_shipment_permissions
       apply_image_permissions
       apply_price_permissions
       apply_product_permissions
@@ -32,7 +34,14 @@ class Spree::VendorAbility
   def apply_order_permissions
     can %i[admin index edit update manage], Spree::Order, line_items: { variant: { vendor_id: @vendor_ids }}
     can %i[admin index], Spree::StateChange
-    can %i[admin show index capture fire], Spree::Payment
+  end
+
+  def apply_payment_permissions
+    can %i[admin show index capture fire], Spree::Payment, order: { line_items: { variant: { vendor_id: @vendor_ids }}}
+  end
+
+  def apply_shipment_permissions
+    can %i[update], Spree::Shipment, order: { line_items: { variant: { vendor_id: @vendor_ids }}}
   end
 
   def apply_image_permissions
