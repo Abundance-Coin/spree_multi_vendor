@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe 'Admin Stock Locations', :js do
   let(:vendor) { create(:vendor) }
   let!(:user) { create(:user, vendors: [vendor]) }

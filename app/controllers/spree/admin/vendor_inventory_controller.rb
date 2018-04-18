@@ -9,7 +9,10 @@ module Spree
         @collection = Spree::Variant.where(vendor_id: current_spree_vendor.id)
                                     .includes(:product)
                                     .joins(:stock_items)
-                                    .select('spree_variants.*, spree_stock_items.count_on_hand as count_on_hand')
+                                    .group('spree_variants.id')
+                                    .select('spree_variants.*, sum(spree_stock_items.count_on_hand) as count_on_hand')
+                                    .page(params[:page])
+                                    .per(params[:per_page] || 15)
       end
 
       def upload

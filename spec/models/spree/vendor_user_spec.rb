@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Spree::VendorUser do
   describe 'associations' do
     it { is_expected.to belong_to(:vendor) }

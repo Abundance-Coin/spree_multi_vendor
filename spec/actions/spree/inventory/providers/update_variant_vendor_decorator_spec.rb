@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Spree::Inventory::Providers::UpdateVariantVendorDecorator, type: :action do
   subject(:variant) { Spree::Inventory::Providers::DefaultVariantProvider.call(item_json, options: options) }
 

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe 'Admin Vendor Settings', :js do
   let(:vendor) { create(:vendor) }
   let(:user) { create(:user, vendors: [vendor]) }

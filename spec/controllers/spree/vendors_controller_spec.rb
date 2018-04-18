@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Spree::VendorsController, type: :controller do
   describe '#show' do
     let(:vendor) { create(:vendor) }

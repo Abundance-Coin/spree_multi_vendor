@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe 'Admin Shipping Methods', :js do
   let(:vendor) { create(:vendor) }
   let!(:user) { create(:user, vendors: [vendor]) }

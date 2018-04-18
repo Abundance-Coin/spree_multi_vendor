@@ -25,6 +25,8 @@
       <% end %>
     </tbody>
   </table>
+
+  <%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>
 <% else %>
   <div class="alert alert-info alpha twelve columns no-objects-found">
     <%= Spree.t(:no_resource_found, resource: 'Inventory') %>

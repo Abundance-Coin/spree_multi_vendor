@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Spree::Variant do
   subject(:create_variant) { create(:variant, vendor: vendor) }
 

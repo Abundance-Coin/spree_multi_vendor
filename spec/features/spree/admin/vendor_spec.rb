@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe 'Admin Vendors', :js do
   let!(:admin) { create(:admin_user) }
 

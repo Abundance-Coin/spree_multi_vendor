@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Spree::Stock::Splitter::VendorSplitter, type: :model do
   subject(:result) do
     described_class.new(packer).split(packages)
