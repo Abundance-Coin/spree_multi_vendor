@@ -1,5 +1,6 @@
 <ul data-hook="admin_vendors_sidebar_menu" class="collapse nav nav-pills nav-stacked" id="sidebar-vendors">
   <%= configurations_sidebar_menu_item(Spree.t(:vendor_inventory), spree.admin_vendor_inventory_path) if can?(:manage, Spree::Variant) %>
   <%= configurations_sidebar_menu_item(Spree.t(:vendor_inventory_upload), spree.admin_vendor_inventory_upload_path) if can?(:manage, Spree::Variant) %>
+  <%= configurations_sidebar_menu_item(Spree.t(:bank_details), spree.admin_vendor_bank_path) if can?(:update, Spree::Vendor) %>
   <%= configurations_sidebar_menu_item(Spree.t(:vendor_settings), spree.admin_vendor_settings_path) if can?(:update, Spree::Vendor) %>
 </ul>

@@ -28,6 +28,10 @@ module Spree
 
     self.whitelisted_ransackable_attributes = %w[name state]
 
+    def bank_account
+      @bank_account ||= BankAccount.new
+    end
+
     private
 
     def create_stock_location

@@ -10,6 +10,17 @@ en:
         note: note
         state: state
         created_at: created at
+  activemodel:
+    attributes:
+      spree/bank_account:
+        first_name: First Name
+        city: City
+        line1: Address line 1
+        line2: Address line 2
+        postal_code: ZIP or postal code
+        state: State
+        dob: Date of Birth
+        bank_account: Bank Account
 
   spree:
     vendor_inventory: Inventory
@@ -26,3 +37,8 @@ en:
       active: Active
       blocked: Blocked
       pending: Pending
+    legal_entity_representative: Company representative
+    legal_entity_address: Company address
+    legal_entity_bank_account: Bank account
+    update_account: Update account
+    stripe_terms: By registering your account, you agree to our <a target='_blank' href='/terms-and-conditions'>Services Agreement</a> and the <a href='https://stripe.com/connect-account/legal' target='_blank'>Stripe Connected Account Agreement</a>.

@@ -3,6 +3,8 @@ Spree::Core::Engine.routes.draw do
     resources :vendors
     get 'vendor_settings' => 'vendor_settings#edit'
     patch 'vendor_settings' => 'vendor_settings#update'
+    get 'vendor_bank' => 'vendor_bank#edit'
+    post 'vendor_bank' => 'vendor_bank#update'
 
     scope :vendor_inventory do
       get '/', to: 'vendor_inventory#index', as: :vendor_inventory

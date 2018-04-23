@@ -19,6 +19,7 @@ class Spree::VendorAbility
       apply_stock_movement_permissions
       apply_variant_permissions
       apply_vendor_permissions
+      apply_vendor_bank_permissions
       apply_vendor_settings_permissions
       apply_vendor_inventory_permissions
       apply_vendor_uploads_permissions
@@ -93,6 +94,10 @@ class Spree::VendorAbility
 
   def apply_vendor_permissions
     can %i[admin update], Spree::Vendor, id: @vendor_ids
+  end
+
+  def apply_vendor_bank_permissions
+    can :manage, :vendor_bank
   end
 
   def apply_vendor_settings_permissions

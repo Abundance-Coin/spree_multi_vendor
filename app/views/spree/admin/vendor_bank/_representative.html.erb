@@ -1,0 +1,38 @@
+<div class="panel panel-default representative">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+      <%= Spree.t(:legal_entity_representative) %>
+    </h1>
+  </div>
+
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.field_container :first_name do %>
+        <%= f.label :first_name %>
+        <span class="required">*</span>
+        <%= f.text_field :first_name, class: 'form-control', required: true %>
+      <% end %>
+
+      <%= f.field_container :last_name do %>
+        <%= f.label :last_name %>
+        <span class="required">*</span>
+        <%= f.text_field :last_name, class: 'form-control', required: true %>
+      <% end %>
+
+      <%= f.field_container :dob do %>
+        <%= f.label :dob %>
+        <span class="required">*</span>
+        <br>
+        <%= f.date_select :dob, class: 'form-control', add_month_numbers: true,
+            start_year: Date.today.year - 50, end_year:  Date.today.year - 18,
+            include_blank: true, required: true %>
+      <% end %>
+
+      <%= f.field_container :ssn_last_4 do %>
+        <%= f.label :ssn_last_4 %>
+        <span class="required">*</span>
+        <%= f.text_field :ssn_last_4, class: 'form-control', required: true %>
+      <% end %>
+    </div>
+  </div>
+</div>

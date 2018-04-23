@@ -1,0 +1,38 @@
+<script src="https://js.stripe.com/v3/"></script>
+
+<% content_for :page_title do %>
+  <%= @vendor.name %> Bank Details
+<% end %>
+
+<%= form_for [:admin, @vendor.bank_account], url: '' do |f| %>
+  <fieldset>
+    <div class='row'>
+      <div class='col-md-6'>
+        <%= render 'address', f: f %>
+        <%= render 'representative', f: f %>
+      </div>
+      <div class='col-md-6'>
+        <%= render 'bank_account', f: f %>
+      </div>
+    </div>
+
+    <div class='form-actions' data-hook='buttons'>
+      <p><%== Spree.t(:stripe_terms) %></p>
+      <%= button Spree.t('update_account'), 'save', 'submit', id: 'update-btn' %>
+      <span class='or'><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t('actions.cancel'), admin_vendor_bank_url, icon: 'delete' %>
+    </div>
+  </fieldset>
+<% end %>
+
+<script>
+  function validate() {
+    return true
+  }
+
+  $('#update-btn').click(function(e) {
+    if (!validate()) {
+      e.preventDefault()
+    }
+  })
+</script>

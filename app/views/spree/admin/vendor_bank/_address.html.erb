@@ -1,0 +1,21 @@
+<div class="panel panel-default address">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+      <%= Spree.t(:legal_entity_address) %>
+    </h1>
+  </div>
+
+  <div class="panel-body">
+    <div class="form-group">
+      <% Spree::BankAccount.address_fields.each do |field, required| %>
+        <%= f.field_container field do %>
+          <%= f.label field %>
+          <% if required %>
+            <span class="required">*</span>
+          <% end %>
+          <%= f.text_field field, class: 'form-control', required: required %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

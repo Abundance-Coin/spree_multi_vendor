@@ -1,0 +1,35 @@
+<div class="panel panel-default bank_account">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+      <%= Spree.t(:legal_entity_bank_account) %>
+    </h1>
+  </div>
+
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.field_container :account_holder_type do %>
+        <%= f.label :account_holder_type %><span class="required">*</span>
+        <%= f.collection_select(:account_holder_type, @account_types, :last, :first, { include_blank: false }, { class: 'select2' }) %>
+        <%= f.error_message_on :account_holder_type %>
+      <% end %>
+
+      <%= f.field_container :account_holder_name do %>
+        <%= f.label :account_holder_name %>
+        <span class="required">*</span>
+        <%= f.text_field :account_holder_name, class: 'form-control', required: true %>
+      <% end %>
+
+      <%= f.field_container :routing_number do %>
+        <%= f.label :routing_number %>
+        <span class="required">*</span>
+        <%= f.text_field :routing_number, class: 'form-control', required: true %>
+      <% end %>
+
+      <%= f.field_container :account_number do %>
+        <%= f.label :account_number %>
+        <span class="required">*</span>
+        <%= f.text_field :account_number, class: 'form-control', required: true %>
+      <% end %>
+    </div>
+  </div>
+</div>
