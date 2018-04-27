@@ -6,33 +6,52 @@
   </div>
 
   <div class="panel-body">
-    <div class="form-group">
-      <%= f.field_container :first_name do %>
-        <%= f.label :first_name %>
-        <span class="required">*</span>
-        <%= f.text_field :first_name, class: 'form-control', required: true %>
-      <% end %>
+    <%= f.field_container :business_name, class: ['form-group'] do %>
+      <%= f.label :business_name %>
+      <%= f.text_field :business_name, class: 'form-control', disabled: @bank_account.stripe_legal_verified? %>
+    <% end %>
 
-      <%= f.field_container :last_name do %>
-        <%= f.label :last_name %>
-        <span class="required">*</span>
-        <%= f.text_field :last_name, class: 'form-control', required: true %>
-      <% end %>
+    <%= f.field_container :first_name, class: ['form-group'] do %>
+      <%= f.label :first_name %>
+      <span class="required">*</span>
+      <%= f.text_field :first_name, class: 'form-control', required: true, disabled: @bank_account.stripe_legal_verified? %>
+    <% end %>
 
-      <%= f.field_container :dob do %>
-        <%= f.label :dob %>
-        <span class="required">*</span>
-        <br>
-        <%= f.date_select :dob, class: 'form-control', add_month_numbers: true,
-            start_year: Date.today.year - 50, end_year:  Date.today.year - 18,
-            include_blank: true, required: true %>
-      <% end %>
+    <%= f.field_container :last_name, class: ['form-group'] do %>
+      <%= f.label :last_name %>
+      <span class="required">*</span>
+      <%= f.text_field :last_name, class: 'form-control', required: true, disabled: @bank_account.stripe_legal_verified? %>
+    <% end %>
 
-      <%= f.field_container :ssn_last_4 do %>
-        <%= f.label :ssn_last_4 %>
-        <span class="required">*</span>
-        <%= f.text_field :ssn_last_4, class: 'form-control', required: true %>
-      <% end %>
-    </div>
+    <%= f.field_container :email, class: ['form-group'] do %>
+      <%= f.label :email %>
+      <span class="required">*</span>
+      <%= f.email_field :email, class: 'form-control', required: true, disabled: @bank_account.stripe_legal_verified? %>
+    <% end %>
+
+    <%= f.field_container :dob, class: ['form-group'] do %>
+      <%= f.label :dob %>
+      <span class="required">*</span>
+      <br>
+      <%= f.date_select :dob, class: 'form-control', add_month_numbers: true,
+          start_year: Date.today.year - 50, end_year:  Date.today.year - 18,
+          include_blank: true, required: true, disabled: @bank_account.stripe_legal_verified? %>
+    <% end %>
+
+    <%= f.field_container :ssn, class: ['form-group'] do %>
+      <%= f.label :ssn %>
+      <span class="required">*</span>
+      <%= f.text_field :ssn, class: 'form-control', required: true, maxlength: 9, disabled: @bank_account.stripe_legal_verified? %>
+    <% end %>
+
+    <%= f.field_container :document_file, class: ['form-group'] do %>
+      <%= f.label :document_file %>
+      <span class="required">*</span>
+      <% if @bank_account.document_file.present? %>
+        <br>Uploaded
+      <% else %>
+        <%= f.file_field :document_file, class: 'form-control', required: true %>
+      <% end%>
+    <% end %>
   </div>
 </div>

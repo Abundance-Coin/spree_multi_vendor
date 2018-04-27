@@ -1,0 +1,138 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://uploads.stripe.com/v1/files
+    body:
+      encoding: UTF-8
+      string: "-------------RubyMultipartPost-b3ae83c4cbd9c4d050fe01c97f0f75c3\r\nContent-Disposition:
+        form-data; name=\"purpose\"\r\n\r\nidentity_document\r\n-------------RubyMultipartPost-b3ae83c4cbd9c4d050fe01c97f0f75c3--\r\n\r\n"
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.13.0
+      Authorization:
+      - Bearer <STRIPE_KEY>
+      Content-Type:
+      - multipart/form-data; boundary=-----------RubyMultipartPost-b3ae83c4cbd9c4d050fe01c97f0f75c3
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.13.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST 2018;
+        root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro"}'
+      Content-Length:
+      - '203'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 27 Apr 2018 10:52:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '231'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Stripe-Version:
+      - '2018-02-06'
+      Request-Id:
+      - req_5Xi7jY9jWpThyM
+      Cache-Control:
+      - no-cache, no-store
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "code": "parameter_missing",
+            "doc_url": "https://stripe.com/docs/error-codes/parameter-missing",
+            "message": "Missing required param: file.",
+            "param": "file",
+            "type": "invalid_request_error"
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 27 Apr 2018 10:52:40 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/accounts
+    body:
+      encoding: UTF-8
+      string: country=US&type=custom&legal_entity[address][country]=US&tos_acceptance[date]=1524826360
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.13.0
+      Authorization:
+      - Bearer <STRIPE_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.13.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST 2018;
+        root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 27 Apr 2018 10:52:41 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '259'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_NxXvw9y55RspTy
+      Stripe-Version:
+      - '2018-02-06'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "code": "parameter_missing",
+            "doc_url": "https://stripe.com/docs/error-codes/parameter-missing",
+            "message": "Missing required param: tos_acceptance[ip].",
+            "param": "tos_acceptance[ip]",
+            "type": "invalid_request_error"
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 27 Apr 2018 10:52:41 GMT
+recorded_with: VCR 4.0.0

@@ -1,0 +1,329 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/accounts/acct_1CKmc2IFliRsdw3Y
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.13.0
+      Authorization:
+      - Bearer <STRIPE_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.13.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST 2018;
+        root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 27 Apr 2018 10:52:11 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2460'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_41MhhEvjhj7l78
+      Stripe-Account:
+      - acct_1CKmc2IFliRsdw3Y
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "acct_1CKmc2IFliRsdw3Y",
+          "object": "account",
+          "business_name": "Name",
+          "business_url": null,
+          "charges_enabled": true,
+          "country": "US",
+          "created": 1524658842,
+          "debit_negative_balances": false,
+          "decline_charge_on": {
+            "avs_failure": false,
+            "cvc_failure": false
+          },
+          "default_currency": "usd",
+          "details_submitted": true,
+          "display_name": null,
+          "email": "email@example.com",
+          "external_accounts": {
+            "object": "list",
+            "data": [
+              {
+                "id": "ba_1CLU7uIFliRsdw3YbaEfQ21D",
+                "object": "bank_account",
+                "account": "acct_1CKmc2IFliRsdw3Y",
+                "account_holder_name": "ew",
+                "account_holder_type": "company",
+                "bank_name": "BANK OF AMERICA, N.A.",
+                "country": "US",
+                "currency": "usd",
+                "default_for_currency": true,
+                "fingerprint": "7Xm5PNg5A7fIywD0",
+                "last4": "6789",
+                "metadata": {},
+                "routing_number": "111000025",
+                "status": "new"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/accounts/acct_1CKmc2IFliRsdw3Y/external_accounts"
+          },
+          "legal_entity": {
+            "additional_owners": [],
+            "address": {
+              "city": "Sacramento",
+              "country": "US",
+              "line1": "Folsom drv",
+              "line2": null,
+              "postal_code": "91110",
+              "state": "CA"
+            },
+            "business_name": "Name",
+            "business_tax_id_provided": true,
+            "dob": {
+              "day": 25,
+              "month": 4,
+              "year": 1993
+            },
+            "first_name": "Bob",
+            "last_name": "Peterson",
+            "personal_address": {
+              "city": null,
+              "country": "US",
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "personal_id_number_provided": true,
+            "ssn_last_4_provided": true,
+            "type": "company",
+            "verification": {
+              "details": null,
+              "details_code": null,
+              "document": "file_1CKnxzI93ruT9p2PWsofYCYZ",
+              "status": "verified"
+            }
+          },
+          "metadata": {},
+          "payout_schedule": {
+            "delay_days": 2,
+            "interval": "daily"
+          },
+          "payout_statement_descriptor": null,
+          "payouts_enabled": true,
+          "product_description": null,
+          "statement_descriptor": "",
+          "support_email": null,
+          "support_phone": null,
+          "timezone": "Etc/UTC",
+          "tos_acceptance": {
+            "date": 1524658841,
+            "ip": "233.232.42.11",
+            "user_agent": null
+          },
+          "type": "custom",
+          "verification": {
+            "disabled_reason": null,
+            "due_by": null,
+            "fields_needed": []
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 27 Apr 2018 10:52:11 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/accounts/acct_1CKmc2IFliRsdw3Y
+    body:
+      encoding: UTF-8
+      string: legal_entity[address][city]=Sacramento&legal_entity[address][country]=US&legal_entity[address][line1]=Folsom+drv&legal_entity[address][line2]=&legal_entity[address][postal_code]=91110&legal_entity[address][state]=CA&legal_entity[business_name]=Name
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.13.0
+      Authorization:
+      - Bearer <STRIPE_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.13.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST 2018;
+        root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 27 Apr 2018 10:52:13 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2460'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_aAU3n8z07x3WTZ
+      Stripe-Account:
+      - acct_1CKmc2IFliRsdw3Y
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "acct_1CKmc2IFliRsdw3Y",
+          "object": "account",
+          "business_name": "Name",
+          "business_url": null,
+          "charges_enabled": true,
+          "country": "US",
+          "created": 1524658842,
+          "debit_negative_balances": false,
+          "decline_charge_on": {
+            "avs_failure": false,
+            "cvc_failure": false
+          },
+          "default_currency": "usd",
+          "details_submitted": true,
+          "display_name": null,
+          "email": "email@example.com",
+          "external_accounts": {
+            "object": "list",
+            "data": [
+              {
+                "id": "ba_1CLU7uIFliRsdw3YbaEfQ21D",
+                "object": "bank_account",
+                "account": "acct_1CKmc2IFliRsdw3Y",
+                "account_holder_name": "ew",
+                "account_holder_type": "company",
+                "bank_name": "BANK OF AMERICA, N.A.",
+                "country": "US",
+                "currency": "usd",
+                "default_for_currency": true,
+                "fingerprint": "7Xm5PNg5A7fIywD0",
+                "last4": "6789",
+                "metadata": {},
+                "routing_number": "111000025",
+                "status": "new"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/accounts/acct_1CKmc2IFliRsdw3Y/external_accounts"
+          },
+          "legal_entity": {
+            "additional_owners": [],
+            "address": {
+              "city": "Sacramento",
+              "country": "US",
+              "line1": "Folsom drv",
+              "line2": null,
+              "postal_code": "91110",
+              "state": "CA"
+            },
+            "business_name": "Name",
+            "business_tax_id_provided": true,
+            "dob": {
+              "day": 25,
+              "month": 4,
+              "year": 1993
+            },
+            "first_name": "Bob",
+            "last_name": "Peterson",
+            "personal_address": {
+              "city": null,
+              "country": "US",
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "personal_id_number_provided": true,
+            "ssn_last_4_provided": true,
+            "type": "company",
+            "verification": {
+              "details": null,
+              "details_code": null,
+              "document": "file_1CKnxzI93ruT9p2PWsofYCYZ",
+              "status": "verified"
+            }
+          },
+          "metadata": {},
+          "payout_schedule": {
+            "delay_days": 2,
+            "interval": "daily"
+          },
+          "payout_statement_descriptor": null,
+          "payouts_enabled": true,
+          "product_description": null,
+          "statement_descriptor": "",
+          "support_email": null,
+          "support_phone": null,
+          "timezone": "Etc/UTC",
+          "tos_acceptance": {
+            "date": 1524658841,
+            "ip": "233.232.42.11",
+            "user_agent": null
+          },
+          "type": "custom",
+          "verification": {
+            "disabled_reason": null,
+            "due_by": null,
+            "fields_needed": []
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 27 Apr 2018 10:52:13 GMT
+recorded_with: VCR 4.0.0

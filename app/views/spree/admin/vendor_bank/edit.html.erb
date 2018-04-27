@@ -4,20 +4,25 @@
   <%= @vendor.name %> Bank Details
 <% end %>
 
-<%= form_for [:admin, @vendor.bank_account], url: '' do |f| %>
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @bank_account } %>
+
+<%= form_for [:admin, @bank_account], url: admin_vendor_bank_url do |f| %>
   <fieldset>
     <div class='row'>
       <div class='col-md-6'>
         <%= render 'address', f: f %>
-        <%= render 'representative', f: f %>
+        <%= render 'bank_account', f: f %>
+        <%= f.hidden_field :token %>
       </div>
       <div class='col-md-6'>
-        <%= render 'bank_account', f: f %>
+        <%= render 'representative', f: f %>
       </div>
     </div>
 
     <div class='form-actions' data-hook='buttons'>
+      <%= f.hidden_field :tos_acceptance, value: 1 %>
       <p><%== Spree.t(:stripe_terms) %></p>
+
       <%= button Spree.t('update_account'), 'save', 'submit', id: 'update-btn' %>
       <span class='or'><%= Spree.t(:or) %></span>
       <%= button_link_to Spree.t('actions.cancel'), admin_vendor_bank_url, icon: 'delete' %>
@@ -26,13 +31,49 @@
 <% end %>
 
 <script>
-  function validate() {
-    return true
+  function submitForm(token) {
+    $('.bank_account input, .bank_account select').prop('disabled', true)
+
+    $('#bank_account_token').val(token);
+    $('#new_bank_account').submit();
   }
 
   $('#update-btn').click(function(e) {
-    if (!validate()) {
-      e.preventDefault()
+    e.preventDefault();
+
+    var token = $('#bank_account_token').val();
+
+    if (token) {
+      submitForm(token);
+    } else {
+      var stripe = Stripe('<%= @stripe_key %>');
+      stripe.createToken('bank_account', {
+        country: 'US',
+        currency: 'usd',
+        routing_number: $('#bank_account_routing_number').val(),
+        account_number: $('#bank_account_account_number').val(),
+        account_holder_name: $('#bank_account_account_holder_name').val(),
+        account_holder_type: $('#bank_account_account_holder_type').val()
+      }).then(function(result) {
+        $('.form-group').removeClass('withError');
+        $('.formError').remove();
+
+        if (result.error) {
+          $('input[name="' + result.error.param + '"]').after(
+            '<span class="formError">' + result.error.message + '</span>')
+            .closest('.form-group').addClass('withError');
+        } else if(result.token) {
+            submitForm(result.token.id);
+        }
+      });
     }
+  })
+
+  $('#change_account').click(function(e) {
+    e.preventDefault();
+
+    $('.bank_account input, #bank_account_token').val('').prop('disabled', false)
+    $('.bank_account select').prop('disabled', false)
+    $(e.target).remove()
   })
 </script>

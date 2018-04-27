@@ -21,6 +21,7 @@ en:
         state: State
         dob: Date of Birth
         bank_account: Bank Account
+        document_file: Legal Document
 
   spree:
     vendor_inventory: Inventory
@@ -40,5 +41,6 @@ en:
     legal_entity_representative: Company representative
     legal_entity_address: Company address
     legal_entity_bank_account: Bank account
+    legal_entity_bank_account_change: Change
     update_account: Update account
     stripe_terms: By registering your account, you agree to our <a target='_blank' href='/terms-and-conditions'>Services Agreement</a> and the <a href='https://stripe.com/connect-account/legal' target='_blank'>Stripe Connected Account Agreement</a>.

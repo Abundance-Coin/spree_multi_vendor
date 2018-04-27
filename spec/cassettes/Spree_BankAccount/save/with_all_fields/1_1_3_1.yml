@@ -1,0 +1,244 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://uploads.stripe.com/v1/files
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.13.0
+      Authorization:
+      - Bearer <STRIPE_KEY>
+      Content-Type:
+      - multipart/form-data; boundary=-----------RubyMultipartPost-e2e626bc1959a11fd859a7f82391741a
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.13.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST 2018;
+        root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro"}'
+      Content-Length:
+      - '7136'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 27 Apr 2018 11:05:15 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Stripe-Version:
+      - '2018-02-06'
+      Request-Id:
+      - req_BmuO6guwJPCUlt
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "file_1CLUO6I93ruT9p2PQrjJqCGq",
+          "object": "file_upload",
+          "created": 1524827114,
+          "filename": "legal.png",
+          "purpose": "identity_document",
+          "size": 6724,
+          "type": "png",
+          "url": null
+        }
+    http_version:
+  recorded_at: Fri, 27 Apr 2018 11:05:15 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/accounts
+    body:
+      encoding: UTF-8
+      string: country=US&type=custom&email=email%40example.com&external_account=btok_1CLULSI93ruT9p2P7czGuVi2&legal_entity[dob][day]=27&legal_entity[dob][month]=4&legal_entity[dob][year]=1998&legal_entity[first_name]=Sam&legal_entity[last_name]=Peterson&legal_entity[personal_id_number]=121112111&legal_entity[type]=company&legal_entity[address][city]=San+Francisco&legal_entity[address][country]=US&legal_entity[address][line1]=Folsom+drv&legal_entity[address][postal_code]=91110&legal_entity[address][state]=CA&legal_entity[verification][document]=file_1CLUO6I93ruT9p2PQrjJqCGq&tos_acceptance[date]=1524827115&tos_acceptance[ip]=233.232.42.11
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.13.0
+      Authorization:
+      - Bearer <STRIPE_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.13.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST 2018;
+        root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 27 Apr 2018 11:05:17 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2627'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_JWxvfUNY4gGkkM
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "acct_1CLUO8HSag5cWOPk",
+          "object": "account",
+          "business_name": null,
+          "business_url": null,
+          "charges_enabled": true,
+          "country": "US",
+          "created": 1524827116,
+          "debit_negative_balances": false,
+          "decline_charge_on": {
+            "avs_failure": false,
+            "cvc_failure": false
+          },
+          "default_currency": "usd",
+          "details_submitted": false,
+          "display_name": null,
+          "email": "email@example.com",
+          "external_accounts": {
+            "object": "list",
+            "data": [
+              {
+                "id": "ba_1CLUO8HSag5cWOPkQrQ4rRMq",
+                "object": "bank_account",
+                "account": "acct_1CLUO8HSag5cWOPk",
+                "account_holder_name": "New user",
+                "account_holder_type": "company",
+                "bank_name": "BANK OF AMERICA, N.A.",
+                "country": "US",
+                "currency": "usd",
+                "default_for_currency": true,
+                "fingerprint": "7Xm5PNg5A7fIywD0",
+                "last4": "6789",
+                "metadata": {},
+                "routing_number": "111000025",
+                "status": "new"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/accounts/acct_1CLUO8HSag5cWOPk/external_accounts"
+          },
+          "keys": {
+            "secret": "sk_test_",
+            "publishable": "pk_test_"
+          },
+          "legal_entity": {
+            "additional_owners": [],
+            "address": {
+              "city": "San Francisco",
+              "country": "US",
+              "line1": "Folsom drv",
+              "line2": null,
+              "postal_code": "91110",
+              "state": "CA"
+            },
+            "business_name": null,
+            "business_tax_id_provided": false,
+            "dob": {
+              "day": 27,
+              "month": 4,
+              "year": 1998
+            },
+            "first_name": "Sam",
+            "last_name": "Peterson",
+            "personal_address": {
+              "city": null,
+              "country": "US",
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "personal_id_number_provided": true,
+            "ssn_last_4_provided": true,
+            "type": "company",
+            "verification": {
+              "details": null,
+              "details_code": null,
+              "document": "file_1CLUO6I93ruT9p2PQrjJqCGq",
+              "status": "pending"
+            }
+          },
+          "metadata": {},
+          "payout_schedule": {
+            "delay_days": 2,
+            "interval": "daily"
+          },
+          "payout_statement_descriptor": null,
+          "payouts_enabled": true,
+          "product_description": null,
+          "statement_descriptor": "",
+          "support_email": null,
+          "support_phone": null,
+          "timezone": "Etc/UTC",
+          "tos_acceptance": {
+            "date": 1524827115,
+            "ip": "233.232.42.11",
+            "user_agent": null
+          },
+          "type": "custom",
+          "verification": {
+            "disabled_reason": null,
+            "due_by": null,
+            "fields_needed": [
+              "legal_entity.business_name"
+            ]
+          }
+        }
+    http_version:
+  recorded_at: Fri, 27 Apr 2018 11:05:17 GMT
+recorded_with: VCR 4.0.0

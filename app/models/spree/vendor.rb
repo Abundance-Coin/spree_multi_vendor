@@ -29,7 +29,7 @@ module Spree
     self.whitelisted_ransackable_attributes = %w[name state]
 
     def bank_account
-      @bank_account ||= BankAccount.new
+      @bank_account ||= BankAccount.load(gateway_account_profile_id)
     end
 
     private
