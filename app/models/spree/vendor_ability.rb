@@ -35,10 +35,13 @@ class Spree::VendorAbility
   def apply_order_permissions
     can %i[admin index edit update manage], Spree::Order, line_items: { variant: { vendor_id: @vendor_ids }}
     can %i[admin index], Spree::StateChange
+    can %i[admin index manage], Spree::ReturnAuthorization
+    can %i[admin index manage], Spree::CustomerReturn
   end
 
   def apply_payment_permissions
-    can %i[admin show index capture fire], Spree::Payment, order: { line_items: { variant: { vendor_id: @vendor_ids }}}
+    can %i[admin show index capture fire void], Spree::Payment, order: { line_items: { variant: { vendor_id: @vendor_ids }}}
+    can %i[admin manage], Spree::Refund
   end
 
   def apply_shipment_permissions
