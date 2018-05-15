@@ -22,6 +22,10 @@
   </div>
 </div>
 
+<% if can?(:manage, Spree::PriceMarkup) %>
+  <%= render partial: 'price_markups_list', locals: { markups: @vendor.price_markups } %>
+<% end %>
+
 <% if can?(:manage, Spree::User) %>
   <%= render partial: 'vendor_users_list', locals: { users: @vendor.users } %>
 <% end %>

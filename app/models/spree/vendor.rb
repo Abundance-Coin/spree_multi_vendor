@@ -10,6 +10,7 @@ module Spree
       has_many :variants
       has_many :products, through: :variants
       has_many :vendor_users
+      has_many :price_markups
     end
 
     has_many :users, through: :vendor_users

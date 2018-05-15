@@ -1,0 +1,23 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h1 class='panel-title'>
+      <%= Spree.t(:new_price_markup) %>
+    </h1>
+  </div>
+
+  <div class='panel-body'>
+    <div>
+      <%= form_for @price_markup, url: admin_vendor_price_markups_path do |f| %>
+        <fieldset>
+          <%= render partial: 'form', locals: { f: f } %>
+
+          <div class="form-actions" data-hook="buttons">
+            <%= button Spree.t(:save), 'save' %>
+            <span class="or"><%= Spree.t(:or) %></span>
+            <%= button_link_to Spree.t('actions.cancel'), edit_admin_vendor_url(id: @price_markup.vendor_id), icon: 'delete' %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<%= render partial: 'spree/shared/error_messages', locals: { target: @price_markup } %>
+
+<div class="form-group">
+  <%= f.field_container :name do %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  <% end %>
+
+  <%= f.field_container :amount do %>
+    <%= f.label :amount %>
+    <%= f.text_field :amount, class: 'form-control' %>
+  <% end %>
+</div>

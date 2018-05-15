@@ -1,0 +1,30 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h1 class='panel-title'>Price Markups</h1>
+  </div>
+
+  <div class='panel-body'>
+    <% if can?(:create, Spree::PriceMarkup) %>
+      <%= button_link_to Spree.t(:new_price_markup), new_admin_vendor_price_markup_url(@vendor), { style: 'margin-bottom:10px', class: "btn-success", icon: 'add', id: 'admin_new_vendor_price_markup' } %>
+    <% end %>
+
+    <% if markups.any? %>
+      <table class='table'>
+        <tbody>
+          <% markups.each do |markup|%>
+            <tr>
+              <td><%= markup.name %></td>
+              <td><%= markup.amount %></td>
+              <td><%= link_to 'Edit', edit_admin_vendor_price_markup_url(@vendor, markup) %></td>
+              <td><%= link_to 'Delete', admin_vendor_price_markup_url(@vendor, markup), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class='alert alert-info no-objects-found'>
+        <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::PriceMarkup)) %>
+      </div>
+    <% end %>
+  </div>
+</div>

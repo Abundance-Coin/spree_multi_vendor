@@ -1,6 +1,9 @@
 Spree::Core::Engine.routes.draw do
   namespace :admin, path: Spree.admin_path do
-    resources :vendors
+    resources :vendors do
+      resources :price_markups
+    end
+
     get 'vendor_settings' => 'vendor_settings#edit'
     patch 'vendor_settings' => 'vendor_settings#update'
     get 'vendor_bank' => 'vendor_bank#edit'
