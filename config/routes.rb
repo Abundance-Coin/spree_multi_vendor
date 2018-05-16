@@ -1,7 +1,11 @@
 Spree::Core::Engine.routes.draw do
   namespace :admin, path: Spree.admin_path do
     resources :vendors do
-      resources :price_markups
+      resources :price_markups do
+        collection do
+          post :run_recalculate, action: :run_recalculate
+        end
+      end
     end
 
     get 'vendor_settings' => 'vendor_settings#edit'

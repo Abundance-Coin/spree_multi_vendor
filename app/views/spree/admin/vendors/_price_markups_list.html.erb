@@ -8,6 +8,10 @@
       <%= button_link_to Spree.t(:new_price_markup), new_admin_vendor_price_markup_url(@vendor), { style: 'margin-bottom:10px', class: "btn-success", icon: 'add', id: 'admin_new_vendor_price_markup' } %>
     <% end %>
 
+    <% if can?(:manage, Spree::PriceMarkup) %>
+      <%= button_link_to Spree.t(:recalculate_price_markups), run_recalculate_admin_vendor_price_markups_url(@vendor), { method: :post, style: 'margin-bottom:10px', class: "btn-danger", icon: 'cog' } %>
+    <% end %>
+
     <% if markups.any? %>
       <table class='table'>
         <tbody>

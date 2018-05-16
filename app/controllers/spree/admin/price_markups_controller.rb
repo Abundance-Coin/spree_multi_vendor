@@ -3,9 +3,15 @@ module Spree
     class PriceMarkupsController < ResourceController
       belongs_to 'spree/vendor'
 
-      skip_before_action :load_resource, only: [:edit, :update, :destroy]
+      skip_before_action :load_resource, only: [:edit, :update, :destroy, :run_recalculate]
 
       before_action :find_price_markup, only: [:destroy, :edit, :update]
+
+      def run_recalculate
+        Spree::RecalculateVendorVariantPrices.perform_async(parent.id)
+        flash[:success] = Spree.t(:price_markups_recalculation)
+        redirect_to edit_admin_vendor_url(parent)
+      end
 
       private
 

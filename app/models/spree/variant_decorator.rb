@@ -1,4 +1,16 @@
 Spree::Variant.class_eval do
+  before_save :adjust_price, if: :will_save_change_to_cost_price?
+
+  def adjust_price
+    self.price = cost_price || 0
+    self.price += vendor.price_markups.sum(:amount) if vendor.present?
+  end
+
+  def adjust_price!
+    adjust_price
+    save
+  end
+
   private
 
   def create_stock_items

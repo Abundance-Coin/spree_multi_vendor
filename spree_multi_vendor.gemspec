@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
+  s.add_dependency 'sidekiq'
+
   spree_version = '>= 3.1.0', '< 4.0'
   s.add_dependency 'spree_backend', spree_version
   s.add_dependency 'spree_core', spree_version
@@ -38,6 +40,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pg', '0.21.0'
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'rspec-sidekiq'
   s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'shoulda-matchers'
