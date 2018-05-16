@@ -1,5 +1,5 @@
-describe Spree::RecalculateVendorVariantPrices, type: :worker do
-  subject(:perform) { described_class.perform_async(vendor.id) }
+describe Spree::RecalculateVendorVariantPrice, type: :worker do
+  subject(:perform) { described_class.perform_async(variant.id) }
 
   let(:vendor) { create(:vendor) }
   let!(:price_markup) { create(:price_markup, amount: 10, vendor: vendor) }
@@ -9,7 +9,7 @@ describe Spree::RecalculateVendorVariantPrices, type: :worker do
 
   it 'enqueues worker' do
     perform
-    expect(described_class).to have_enqueued_sidekiq_job(vendor.id)
+    expect(described_class).to have_enqueued_sidekiq_job(variant.id)
   end
 
   describe 'perform worker', run_jobs: true do

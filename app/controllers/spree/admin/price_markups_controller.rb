@@ -8,7 +8,7 @@ module Spree
       before_action :find_price_markup, only: [:destroy, :edit, :update]
 
       def run_recalculate
-        Spree::RecalculateVendorVariantPrices.perform_async(parent.id)
+        Spree::EnqueueVendorVariantPricesRecalculation.perform_async(parent.id)
         flash[:success] = Spree.t(:price_markups_recalculation)
         redirect_to edit_admin_vendor_url(parent)
       end
