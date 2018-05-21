@@ -6,6 +6,10 @@ module Spree
           variant.vendor_id = options[:vendor_id]
           super
         end
+
+        def fetch_variant(product, item)
+          Variant.unscoped.where(sku: item[:sku], product: product, vendor_id: options[:vendor_id]).first_or_initialize
+        end
       end
     end
   end
