@@ -11,7 +11,7 @@ RSpec.describe 'Admin Vendors', :js do
     it 'displays existing vendors' do
       within_row(1) do
         expect(column_text(1)).to eq 'My vendor'
-        expect(column_text(2)).to eq 'pending'
+        expect(column_text(2)).to eq 'active'
       end
     end
   end

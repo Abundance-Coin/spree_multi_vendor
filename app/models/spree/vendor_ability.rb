@@ -45,7 +45,7 @@ class Spree::VendorAbility
   end
 
   def apply_shipment_permissions
-    can %i[update], Spree::Shipment, order: { line_items: { variant: { vendor_id: @vendor_ids }}}
+    can %i[manage], Spree::Shipment, order: { line_items: { variant: { vendor_id: @vendor_ids }}}
   end
 
   def apply_image_permissions

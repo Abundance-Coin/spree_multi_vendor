@@ -3,17 +3,13 @@ RSpec.describe 'Admin Shipping Methods', :js do
   let!(:user) { create(:user, vendors: [vendor]) }
   let!(:admin) { create(:admin_user) }
 
-  before do
-    create(:shipping_method, name: 'Test')
-    create(:shipping_method, name: 'Test', vendor: vendor)
-  end
-
   context 'when user with admin role' do
     describe '#index' do
       it 'displays all shipping methods' do
         login_as(admin, scope: :spree_user)
         visit spree.admin_shipping_methods_path
-        expect(page).to have_selector('tr', count: 3)
+        # head + vendor shipping method
+        expect(page).to have_selector('tr', count: 2)
       end
     end
   end

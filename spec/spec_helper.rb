@@ -14,8 +14,7 @@ require 'ffaker'
 require 'rspec/rails'
 require 'shoulda/matchers'
 
-include Warden::Test::Helpers
-Warden.test_mode!
+Dir[File.join(File.dirname(__FILE__), '/support/**/*.rb')].each { |file| require file }
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -38,5 +37,3 @@ RSpec.configure do |config|
   config.order = :random
   Kernel.srand(config.seed)
 end
-
-Dir[File.join(File.dirname(__FILE__), '/support/**/*.rb')].each { |file| require file }
