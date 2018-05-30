@@ -17,7 +17,7 @@ RSpec.describe 'Orders update shipments', type: :request do
     let(:vendor) { create(:vendor) }
     let(:user) { create(:user, spree_api_key: 'secure', vendors: [vendor]) }
     let(:token) { user.spree_api_key }
-    let(:order) { create(:order_ready_to_ship) }
+    let(:order) { create(:vendor_order_ready_to_ship, vendor: vendor) }
     let(:orders) { [{ number: order.number, action: :ship }] }
 
     before { order.process_payments! }
