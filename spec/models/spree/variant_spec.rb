@@ -49,6 +49,19 @@ describe Spree::Variant do
           variant.update(cost_price: 30)
         }.to change(variant, :price)
       end
+
+      context 'when updating with same cost price' do
+        before do
+          variant.update(cost_price: 30, price: 30)
+          variant.reload
+        end
+
+        it 'does not reset price' do
+          expect {
+            variant.update(cost_price: 30, price: 30)
+          }.not_to change(variant, :price)
+        end
+      end
     end
   end
 end
