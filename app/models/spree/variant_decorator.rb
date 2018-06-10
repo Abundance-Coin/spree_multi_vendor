@@ -1,5 +1,5 @@
 Spree::Variant.class_eval do
-  before_save :adjust_price
+  before_save :adjust_price, unless: :is_master
 
   def adjust_price
     return if cost_price.blank?
