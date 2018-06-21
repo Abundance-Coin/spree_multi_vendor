@@ -1,5 +1,5 @@
 RSpec.describe Spree::Inventory::Providers::UpdateVariantVendorDecorator, type: :action do
-  subject(:variant) { Spree::Inventory::Providers::DefaultVariantProvider.call(item_json, options: options) }
+  subject(:variant) { Spree::Inventory::Providers::Books::VariantProvider.call(item_json, options: options) }
 
   let(:vendor) { create(:vendor) }
   let(:options) { { vendor_id: vendor.id } }
