@@ -2,6 +2,12 @@
   <%= form_for(:inventory, url: admin_vendor_inventory_upload_path, method: :post, multipart: true ) do |f| %>
     <fieldset>
       <p class="form-buttons">
+        <%= f.field_container :product_type, class: ['form-group'] do %>
+          <%= f.label :product_type, Spree.t(:product_type) %> <span class="required">*</span>
+          <br>
+          <%= f.select :product_type, Spree::Inventory::UploadFileAction.supported_product_types %>
+        <% end %>
+
         <%= f.field_container :file do %>
           <%= f.label :file, Spree.t(:new_file) %> <span class="required">*</span><br/>
           <%= f.file_field :attachment %>

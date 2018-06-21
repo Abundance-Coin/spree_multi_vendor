@@ -46,3 +46,4 @@ en:
     stripe_terms: By registering your account, you agree to our <a target='_blank' href='/terms-and-conditions'>Services Agreement</a> and the <a href='https://stripe.com/connect-account/legal' target='_blank'>Stripe Connected Account Agreement</a>.
     recalculate_price_markups: Recalculate Price Markups
     price_markups_recalculation: Price Markups recalculation process started
+    product_type: Product type

@@ -17,7 +17,13 @@ module Spree
 
       def upload
         if request.post?
-          upload = Inventory::UploadFileAction.call(file_format, @file_path, upload_options: { vendor_id: @vendor.id })
+          options = { upload_options: { vendor_id: @vendor.id }}
+
+          if (product_type = upload_params['product_type'])
+            options[:product_type] = product_type
+          end
+
+          upload = Inventory::UploadFileAction.call(file_format, @file_path, options)
 
           if (errors = upload[:errors]).blank?
             flash[:success] = Spree.t(:vendor_inventory_success)
@@ -43,7 +49,7 @@ module Spree
       end
 
       def load_and_validate_file
-        if (@attachment = inventory_params['attachment']).present?
+        if (@attachment = upload_params['attachment']).present?
           save_content
         else
           flash[:error] = Spree.t(:vendor_inventory_blank)
@@ -57,8 +63,8 @@ module Spree
         FileUtils.move(@attachment.tempfile.path, @file_path)
       end
 
-      def inventory_params
-        params.fetch(:inventory, {}).permit(:attachment)
+      def upload_params
+        params.fetch(:inventory, {}).permit(:attachment, :product_type)
       end
 
       def file_format
