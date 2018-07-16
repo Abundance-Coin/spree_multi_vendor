@@ -8,6 +8,12 @@
           <%= f.select :product_type, Spree::Inventory::UploadFileAction.supported_product_types %>
         <% end %>
 
+        <%= f.field_container :provider, class: ['form-group'] do %>
+          <%= f.label :provider, Spree.t(:inventory_provider) %>
+          <br>
+          <%= f.text_field :provider, class: 'form-control' %>
+        <% end %>
+
         <%= f.field_container :file do %>
           <%= f.label :file, Spree.t(:new_file) %> <span class="required">*</span><br/>
           <%= f.file_field :attachment %>

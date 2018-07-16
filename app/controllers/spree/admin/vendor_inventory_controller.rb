@@ -17,11 +17,11 @@ module Spree
 
       def upload
         if request.post?
-          options = { upload_options: { vendor_id: @vendor.id }}
-
-          if (product_type = upload_params['product_type'])
-            options[:product_type] = product_type
-          end
+          options = {
+            upload_options: { vendor_id: @vendor.id },
+            product_type: upload_params[:product_type],
+            provider: upload_params[:provider]
+          }
 
           upload = Inventory::UploadFileAction.call(file_format, @file_path, options)
 
@@ -64,7 +64,7 @@ module Spree
       end
 
       def upload_params
-        params.fetch(:inventory, {}).permit(:attachment, :product_type)
+        params.fetch(:inventory, {}).permit(:attachment, :product_type, :provider)
       end
 
       def file_format

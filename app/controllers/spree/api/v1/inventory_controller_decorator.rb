@@ -1,20 +1,21 @@
-Spree::Api::V1::InventoryController.class_eval do
-  def update
-    authorize! :create, Spree::Product
+module Spree
+  module Api
+    module V1
+      module InventoryControllerDecorator
+        private
 
-    options = { upload_options: { vendor_id: current_vendor&.id }}
+        def additional_inventory_params
+          {
+            upload_options: { vendor_id: current_vendor&.id }
+          }
+        end
 
-    if (product_type = params[:product_type])
-      options[:product_type] = product_type
+        def current_vendor
+          current_api_user.vendors.first if !current_api_user.respond_to?(:has_spree_role?) || !current_api_user.has_spree_role?(:admin)
+        end
+      end
+
+      InventoryController.prepend(InventoryControllerDecorator)
     end
-
-    file_path = save_content
-    @upload = Spree::Inventory::UploadFileAction.call(params[:content_format], file_path, options)
-  end
-
-  private
-
-  def current_vendor
-    current_api_user.vendors.first if !current_api_user.respond_to?(:has_spree_role?) || !current_api_user.has_spree_role?(:admin)
   end
 end
