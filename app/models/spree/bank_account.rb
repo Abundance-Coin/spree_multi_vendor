@@ -167,6 +167,7 @@ module Spree
       begin
         Stripe::Account.create(opts)
       rescue Stripe::InvalidRequestError => exc
+        errors.add(:stripe_error, exc)
         self.stripe_error = exc
         nil
       end
