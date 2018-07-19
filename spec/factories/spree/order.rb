@@ -57,6 +57,17 @@ FactoryBot.define do
       end
     end
 
+    factory :completed_vendor_order do
+      state 'complete'
+      payment_state 'balance_due'
+      shipment_state 'pending'
+
+      after(:create) do |order|
+        order.update_column(:completed_at, Time.current)
+        order.reload
+      end
+    end
+
     factory :vendor_order_ready_to_ship do
       state 'complete'
       payment_state 'paid'
