@@ -5,9 +5,7 @@ module Spree
         private
 
         def additional_inventory_params
-          {
-            upload_options: { vendor_id: current_vendor&.id }
-          }
+          { vendor_id: current_vendor&.id }
         end
 
         def current_vendor

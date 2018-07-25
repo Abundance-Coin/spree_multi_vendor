@@ -15,4 +15,6 @@ RSpec.configure do |config|
   config.before(:each, :js) do
     page.driver.browser.manage.window.maximize if Capybara.javascript_driver == :selenium
   end
+
+  Capybara.server = :puma, { Silent: true }
 end

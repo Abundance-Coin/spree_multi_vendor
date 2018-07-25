@@ -18,12 +18,14 @@ module Spree
       def upload
         if request.post?
           options = {
-            upload_options: { vendor_id: @vendor.id },
+            format: file_format,
+            file_path: @file_path,
             product_type: upload_params[:product_type],
-            provider: upload_params[:provider]
-          }
+            provider: upload_params[:provider],
+            vendor_id: @vendor.id
+          }.merge(additional_inventory_params)
 
-          upload = Inventory::UploadFileAction.call(file_format, @file_path, options)
+          upload = Inventory::UploadFileAction.call(options)
 
           if (errors = upload[:errors]).blank?
             flash[:success] = Spree.t(:vendor_inventory_success)
@@ -61,6 +63,10 @@ module Spree
         FileUtils.mkdir_p('tmp/uploads')
         @file_path = File.join('tmp', 'uploads', SecureRandom.urlsafe_base64)
         FileUtils.move(@attachment.tempfile.path, @file_path)
+      end
+
+      def additional_inventory_params
+        {}
       end
 
       def upload_params

@@ -4,6 +4,6 @@ module Spree
       super.merge(vendor_id: @upload.vendor_id)
     end
   end
-end
 
-Spree::UploadInventoryWorker.prepend(Spree::UploadInventoryWorkerDecorator)
+  UploadInventoryWorker.prepend(UploadInventoryWorkerDecorator)
+end
