@@ -3,6 +3,12 @@ FactoryBot.modify do
     transient do
       vendor nil
     end
-    variant { create(:variant, is_master: false, product: product, vendor: vendor || create(:vendor)) }
+    variant do
+      create(:variant, is_master: false,
+                       product: product,
+                       vendor: vendor || create(:vendor),
+                       count_on_hand: quantity
+      )
+    end
   end
 end

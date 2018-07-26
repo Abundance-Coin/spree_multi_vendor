@@ -5,6 +5,7 @@ FactoryBot.define do
 
     transient do
       line_items_count 1
+      line_items_quantity 1
       shipment_cost 100
       shipping_method_filter Spree::ShippingMethod::DISPLAY_ON_FRONT_END
       vendor_accounts false
@@ -15,13 +16,17 @@ FactoryBot.define do
     after(:create) do |order, evaluator|
       if evaluator.line_item_prices
         evaluator.line_item_prices.each do |price|
-          create(:line_item, order: order, price: price, vendor: evaluator.vendor)
+          create(:line_item, order: order,
+                             price: price,
+                             vendor: evaluator.vendor,
+                             quantity: evaluator.line_items_quantity)
         end
       else
         create_list(:line_item,
                     evaluator.line_items_count,
                     order: order,
                     price: evaluator.line_items_price,
+                    quantity: evaluator.line_items_quantity,
                     vendor: evaluator.vendor)
       end
 
