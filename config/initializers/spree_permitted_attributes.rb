@@ -2,10 +2,8 @@ module Spree
   module PermittedAttributes
     ATTRIBUTES << :vendor_attributes
 
-    mattr_reader(*ATTRIBUTES)
+    mattr_reader :vendor_attributes
 
-    def self.vendor_attributes
-      %i[name note]
-    end
+    @@vendor_attributes = %i[name note] # rubocop:disable Style/ClassVars
   end
 end
