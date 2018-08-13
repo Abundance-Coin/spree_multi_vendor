@@ -20,11 +20,17 @@ describe Spree::Vendor do
   describe 'after_create' do
     let!(:vendor) { build(:vendor) }
 
+    before { vendor.save! }
+
     it 'creates a stock location with default country' do
-      expect { vendor.save! }.to change(Spree::StockLocation, :count).by(1)
+      expect(Spree::StockLocation.count).to eq(1)
       stock_location = Spree::StockLocation.last
       expect(vendor.stock_locations.first).to eq stock_location
       expect(stock_location.country).to eq Spree::Country.default
+    end
+
+    it 'has slug' do
+      expect(vendor.slug).to be_truthy
     end
   end
 end

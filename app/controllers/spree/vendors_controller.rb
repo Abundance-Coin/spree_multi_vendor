@@ -18,7 +18,7 @@ module Spree
     private
 
     def load_vendor
-      @vendor = Spree::Vendor.find(params[:id])
+      @vendor = Spree::Vendor.friendly.find(params[:id])
     end
   end
 end

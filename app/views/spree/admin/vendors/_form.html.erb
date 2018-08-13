@@ -19,4 +19,9 @@
         {}, class: 'select2' %>
     <% end %>
   <% end %>
+
+  <%= f.field_container :slug do %>
+    <%= f.label :slug %>
+    <%= f.text_field :slug, class: 'form-control' %>
+  <% end %>
 </div>
