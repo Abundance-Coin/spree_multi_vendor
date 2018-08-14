@@ -22,13 +22,13 @@ RSpec.describe 'Admin Products', :js do
     end
 
     describe 'create variant' do
-      it 'creates new variant without vendor id assigned' do
+      it 'creates new variant with vendor id assigned' do
         visit spree.admin_product_variants_path(vendor_product)
         click_link 'New Variant'
         select 'S'
         click_button 'Create'
         expect(page).to have_text 'successfully created!'
-        expect(Spree::Variant.last.vendor_id).to be_nil
+        expect(Spree::Variant.last.vendor).to eq(vendor)
       end
     end
   end

@@ -19,5 +19,5 @@ Spree::Core::Engine.routes.draw do
     end
   end
 
-  resources :vendors, only: [:show]
+  resources :vendors, path: 'merchants', only: [:show]
 end
