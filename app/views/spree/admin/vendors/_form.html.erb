@@ -6,6 +6,11 @@
     <%= f.text_field :name, class: 'form-control' %>
   <% end %>
 
+  <%= f.field_container :presentation do %>
+    <%= f.label :presentation %>
+    <%= f.text_field :presentation, class: 'form-control' %>
+  <% end %>
+
   <%= f.field_container :note do %>
     <%= f.label :note %>
     <%= f.text_field :note, class: 'form-control' %>
