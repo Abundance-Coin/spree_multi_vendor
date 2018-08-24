@@ -4,13 +4,13 @@ FactoryBot.define do
     ship_address
 
     transient do
-      line_items_count 1
-      line_items_quantity 1
-      shipment_cost 100
-      shipping_method_filter Spree::ShippingMethod::DISPLAY_ON_FRONT_END
-      vendor_accounts false
-      line_item_prices nil
-      vendor nil
+      line_items_count { 1 }
+      line_items_quantity { 1 }
+      shipment_cost { 100 }
+      shipping_method_filter { Spree::ShippingMethod::DISPLAY_ON_FRONT_END }
+      vendor_accounts { false }
+      line_item_prices { nil }
+      vendor { nil }
     end
 
     after(:create) do |order, evaluator|
@@ -63,9 +63,9 @@ FactoryBot.define do
     end
 
     factory :completed_vendor_order do
-      state 'complete'
-      payment_state 'balance_due'
-      shipment_state 'pending'
+      state { 'complete' }
+      payment_state { 'balance_due' }
+      shipment_state { 'pending' }
 
       after(:create) do |order|
         order.update_column(:completed_at, Time.current)
@@ -74,14 +74,14 @@ FactoryBot.define do
     end
 
     factory :vendor_order_ready_to_ship do
-      state 'complete'
-      payment_state 'paid'
-      shipment_state 'ready'
+      state { 'complete' }
+      payment_state { 'paid' }
+      shipment_state { 'ready' }
 
       after(:create) do |order|
         create(:payment, amount: order.total, order: order, state: 'completed')
         order.shipments.each do |shipment|
-          shipment.inventory_units.update_all state: 'on_hand'
+          shipment.inventory_units.update_all(state: 'on_hand')
           shipment.update_column('state', 'ready')
         end
         order.update_column(:completed_at, Time.current)
@@ -91,7 +91,7 @@ FactoryBot.define do
       factory :shipped_vendor_order do
         after(:create) do |order|
           order.shipments.each do |shipment|
-            shipment.inventory_units.update_all state:('shipped')
+            shipment.inventory_units.update_all(state: 'shipped')
             shipment.update_column('state', 'shipped')
           end
           order.update_column('shipment_state', 'shipped')

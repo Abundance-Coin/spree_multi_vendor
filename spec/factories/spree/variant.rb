@@ -4,7 +4,7 @@ FactoryBot.modify do
     cost_price { price }
 
     transient do
-      count_on_hand 1
+      count_on_hand { 1 }
     end
 
     after :create do |variant, evaluator|

@@ -1,9 +1,8 @@
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.4
-  Include:
-    - '**/Gemfile'
-    - '**/Rakefile'
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'db/migrate/*'
 
 Rails:
   Enabled: true

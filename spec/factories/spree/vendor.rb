@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :vendor, class: Spree::Vendor do
     name { FFaker::Company.name }
-    state :active
+    state { :active }
 
     transient do
-      stripe_account false
+      stripe_account { false }
     end
 
     after(:create) do |vendor, evaluator|

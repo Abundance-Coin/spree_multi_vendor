@@ -20,7 +20,7 @@ RSpec.describe Spree::Inventory::Providers::UpdateVariantVendorDecorator, type: 
   describe '#fetch_variant' do
     before { create(:variant, sku: '08-F-002387', vendor: create(:vendor)) }
 
-    it 'should not fetch item of other vendor' do
+    it 'does not fetch item of other vendor' do
       expect { variant }.to raise_error(/SKU has already been taken/)
     end
   end

@@ -10,13 +10,13 @@ RSpec.describe Spree::Admin::PriceMarkupsController, type: :controller do
     context 'when has no permissions' do
       before { sign_in(user) }
 
-      it { is_expected.not_to be_success }
+      it { is_expected.not_to be_successful }
     end
 
     context 'when has permissions' do
       before { sign_in(admin) }
 
-      it { is_expected.to be_success }
+      it { is_expected.to be_successful }
     end
   end
 end
