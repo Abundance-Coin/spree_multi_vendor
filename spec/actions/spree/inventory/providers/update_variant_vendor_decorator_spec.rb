@@ -17,7 +17,7 @@ RSpec.describe Spree::Inventory::Providers::UpdateVariantVendorDecorator, type: 
     end
   end
 
-  describe '#fetch_variant' do
+  describe '#find_variant' do
     before { create(:variant, sku: '08-F-002387', vendor: create(:vendor)) }
 
     it 'does not fetch item of other vendor' do
