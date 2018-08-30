@@ -14,6 +14,8 @@ module SpreeMultiVendor
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
       Spree::Ability.register_ability(Spree::VendorAbility)
+
+      Spree::Api::ApiHelpers.variant_attributes.push(:vendor_id) unless Spree::Api::ApiHelpers.variant_attributes.any?(:vendor_id)
     end
 
     config.to_prepare(&method(:activate).to_proc)

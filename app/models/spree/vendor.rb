@@ -36,10 +36,6 @@ module Spree
       @bank_account ||= BankAccount.load(gateway_account_profile_id)
     end
 
-    def presentation_or_name
-      presentation.presence || name
-    end
-
     private
 
     def create_stock_location

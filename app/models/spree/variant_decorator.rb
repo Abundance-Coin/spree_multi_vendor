@@ -1,4 +1,12 @@
 Spree::Variant.class_eval do
+  # update sku validator
+  _validators.delete(:sku)
+  _validate_callbacks.each do |callback|
+    callback.raw_filter.attributes.delete :sku if callback.raw_filter.is_a?(ActiveRecord::Validations::UniquenessValidator)
+  end
+
+  validates :sku, uniqueness: { scope: :vendor_id, conditions: -> { where(deleted_at: nil) }}, allow_blank: true
+
   before_save :adjust_price, unless: :is_master
 
   def adjust_price

@@ -1,4 +1,10 @@
 Spree::Core::Engine.routes.draw do
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :vendors, only: %i[index show]
+    end
+  end
+
   namespace :admin, path: Spree.admin_path do
     resources :vendors do
       resources :price_markups do

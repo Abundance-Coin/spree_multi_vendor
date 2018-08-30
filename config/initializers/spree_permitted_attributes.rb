@@ -4,6 +4,6 @@ module Spree
 
     mattr_reader :vendor_attributes
 
-    @@vendor_attributes = %i[name presentation note] # rubocop:disable Style/ClassVars
+    @@vendor_attributes = %i[name customer_support_email note] # rubocop:disable Style/ClassVars
   end
 end

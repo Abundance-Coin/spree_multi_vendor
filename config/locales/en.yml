@@ -7,7 +7,7 @@ en:
     attributes:
       spree/vendor:
         name: name
-        presentation: presentation
+        customer_support_email: customer support email
         note: note
         state: state
         created_at: created at

@@ -6,14 +6,14 @@
     <%= f.text_field :name, class: 'form-control' %>
   <% end %>
 
-  <%= f.field_container :presentation do %>
-    <%= f.label :presentation %>
-    <%= f.text_field :presentation, class: 'form-control' %>
-  <% end %>
-
   <%= f.field_container :note do %>
     <%= f.label :note %>
     <%= f.text_field :note, class: 'form-control' %>
+  <% end %>
+
+  <%= f.field_container :customer_support_email do %>
+    <%= f.label :customer_support_email %>
+    <%= f.text_field :customer_support_email, class: 'form-control' %>
   <% end %>
 
   <% if can?(:manage, Spree::Vendor) %>
@@ -27,6 +27,6 @@
 
   <%= f.field_container :slug do %>
     <%= f.label :slug %>
-    <%= f.text_field :slug, class: 'form-control' %>
+    <%= f.text_field :slug, class: 'form-control', disabled: !can?(:edit_slug, @vendor) %>
   <% end %>
 </div>

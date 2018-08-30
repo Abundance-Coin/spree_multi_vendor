@@ -4,6 +4,24 @@ describe Spree::Variant do
   let(:vendor) { create(:vendor) }
   let(:other_vendor) { create(:vendor, name: 'Other vendor') }
 
+  describe 'sku uniqiuness' do
+    subject(:other_variant) { create(:variant, sku: variant.sku, vendor: other_vendor) }
+
+    let(:variant) { create_variant }
+
+    context 'when vendor is the same' do
+      let(:other_vendor) { vendor }
+
+      it { expect { other_variant }.to raise_error(/SKU has already been taken/) }
+    end
+
+    context 'when vendor is different' do
+      let(:other_vendor) { create(:vendor) }
+
+      it { expect(other_variant.sku).to eq(variant.sku) }
+    end
+  end
+
   describe 'after create' do
     it "propagate to stock items only for Vendor's Stock Locations" do
       expect { create_variant }.to change {

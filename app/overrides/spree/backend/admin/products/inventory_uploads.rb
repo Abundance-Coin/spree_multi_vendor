@@ -13,7 +13,7 @@ Deface::Override.new(
   insert_bottom: 'tr[data-hook="admin_product_uploads_rows"]',
   text:       <<-HTML
                 <td>
-                  <%= upload.vendor.presentation_or_name %>
+                  <%= upload.vendor.name %>
                 </td>
               HTML
 )
