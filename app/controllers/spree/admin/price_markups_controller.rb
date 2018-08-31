@@ -15,6 +15,10 @@ module Spree
 
       private
 
+      def parent
+        @vendor = Vendor.with_deleted.friendly.find(params[:vendor_id])
+      end
+
       def collection_url
         edit_admin_vendor_url(@price_markup.vendor)
       end
