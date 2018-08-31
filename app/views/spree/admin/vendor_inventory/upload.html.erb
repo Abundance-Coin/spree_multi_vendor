@@ -5,7 +5,7 @@
         <%= f.field_container :product_type, class: ['form-group'] do %>
           <%= f.label :product_type, Spree.t(:product_type) %> <span class="required">*</span>
           <br>
-          <%= f.select :product_type, Spree::Upload::SUPPORTED_PRODUCT_TYPES %>
+          <%= f.select :product_type, Spree::Upload.supported_product_types %>
         <% end %>
 
         <%= f.field_container :provider, class: ['form-group'] do %>
