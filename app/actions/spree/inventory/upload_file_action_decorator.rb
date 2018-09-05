@@ -6,7 +6,8 @@ module Spree
       end
 
       def queue_name
-        Spree::Vendor.find(upload_options[:vendor_id]).slug
+        slug = Spree::Vendor.find(upload_options[:vendor_id]).slug
+        "#{slug}-uploads"
       end
     end
 

@@ -14,4 +14,8 @@ RSpec.describe Spree::Inventory::UploadFileAction, type: :action do
   it 'sets vendor_id' do
     expect(upload.vendor).not_to be nil
   end
+
+  it 'return queue name' do
+    expect(described_class.new(options).send(:queue_name)).to eq("#{vendor.slug}-uploads")
+  end
 end
