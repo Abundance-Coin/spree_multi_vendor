@@ -48,6 +48,7 @@ RSpec.describe 'Admin Vendor Bank', js: true, vcr: true do
         fill_in(id: 'bank_account_account_holder_name', with: 'Holder')
         fill_in(id: 'bank_account_routing_number', with: '111000025')
         fill_in(id: 'bank_account_account_number', with: '000123456789')
+        fill_in(id: 'bank_account_tax_id', with: '123456789')
         find('#bank_account_token', visible: false).set('btok_1CLU1VI93ruT9p2PHsChNieK')
 
         click_button 'Update account'

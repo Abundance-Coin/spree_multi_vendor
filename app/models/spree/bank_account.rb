@@ -6,8 +6,10 @@ module Spree
     include ActiveModel::Model
     include ActiveRecord::AttributeAssignment
 
+    HIDDEN_FIELD = '*********'.freeze
+
     attr_accessor :first_name, :last_name, :city, :line1, :line2, :postal_code, :state,
-                  :business_name, :email, :tos_acceptance, :dob, :ssn,
+                  :business_name, :email, :tos_acceptance, :dob, :ssn, :tax_id,
                   :routing_number, :account_number, :account_holder_name,
                   :account_holder_type, :token, :account_id, :request_ip,
                   :document_file, :stripe_error
@@ -38,14 +40,16 @@ module Spree
       stripe_account.external_account = token if stripe_account_id != token
       stripe_account.legal_entity.address = address_hash
       stripe_account.legal_entity.business_name = business_name
+      stripe_account.legal_entity.business_tax_id = tax_id.presence unless tax_id == HIDDEN_FIELD
       unless stripe_legal_verified?
         stripe_account.legal_entity.dob = dob_hash
         stripe_account.legal_entity.first_name = first_name
         stripe_account.legal_entity.last_name = last_name
         stripe_account.legal_entity.type = account_holder_type
         stripe_account.legal_entity.personal_id_number = ssn if ssn.to_i.positive?
-        stripe_account.legal_entity.verification.document = upload_document_file if document_file
+        stripe_account.legal_entity.verification.document = upload_document_file if document_file.present?
       end
+
 
       @account = stripe_account.save
     end
@@ -59,7 +63,7 @@ module Spree
     end
 
     def create_stripe_account
-      verification = { document: upload_document_file } if document_file
+      verification = { document: upload_document_file } if document_file.present?
       @account = create_account(
         country: 'US',
         type: 'custom',
@@ -73,7 +77,8 @@ module Spree
           personal_id_number: ssn,
           type: account_holder_type,
           address: address_hash,
-          verification: verification
+          verification: verification,
+          business_tax_id: tax_id.presence
         },
         tos_acceptance: {
           date: Time.now.to_i,
@@ -102,7 +107,7 @@ module Spree
       self.token = account.id
       self.account_holder_name = account.account_holder_name
       self.account_holder_type = account.account_holder_type
-      self.account_number = '********' + account.last4
+      self.account_number = HIDDEN_FIELD + account.last4
       self.routing_number = account.routing_number
     end
 
@@ -116,8 +121,9 @@ module Spree
       self.dob = Time.new(legal.dob.year, legal.dob.month, legal.dob.day) if legal.dob.year
       self.first_name = legal.first_name
       self.last_name = legal.last_name
-      self.ssn = '*********' if legal.personal_id_number_provided
+      self.ssn = HIDDEN_FIELD if legal.personal_id_number_provided
       self.document_file = legal.verification.document
+      self.tax_id = HIDDEN_FIELD if legal.business_tax_id_provided
     end
 
     def self.load(account_id)
@@ -181,7 +187,9 @@ module Spree
           file: document_file
         )
       rescue Stripe::InvalidRequestError => exc
+        errors.add(:document_file, exc.message)
         self.stripe_error = exc
+        self.document_file = nil
         nil
       end
     end

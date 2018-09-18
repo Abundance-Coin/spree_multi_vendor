@@ -32,15 +32,14 @@
 
 <script>
   function submitForm(token) {
-    $('.bank_account input, .bank_account select').prop('disabled', true)
+    $('.bank_account input').prop('disabled', true)
 
     $('#bank_account_token').val(token);
-    $('#new_bank_account').submit();
+    $('#new_bank_account')[0].submit();
   }
 
   $('#update-btn').click(function(e) {
     e.preventDefault();
-
     var token = $('#bank_account_token').val();
 
     if (token) {

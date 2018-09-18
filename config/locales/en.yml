@@ -23,6 +23,7 @@ en:
         dob: Date of Birth
         bank_account: Bank Account
         document_file: Legal Document
+        tax_id: Business Tax ID
 
   spree:
     vendor_inventory: Inventory

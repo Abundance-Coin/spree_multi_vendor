@@ -48,10 +48,16 @@
       <%= f.label :document_file %>
       <span class="required">*</span>
       <% if @bank_account.document_file.present? %>
+        <%= f.hidden_field :document_file, value: :uploaded %>
         <br>Uploaded
       <% else %>
         <%= f.file_field :document_file, class: 'form-control', required: true %>
       <% end%>
+    <% end %>
+
+    <%= f.field_container :tax_id, class: ['form-group'] do %>
+      <%= f.label :tax_id %>
+      <%= f.text_field :tax_id, class: 'form-control' %>
     <% end %>
   </div>
 </div>

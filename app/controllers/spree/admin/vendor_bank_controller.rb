@@ -39,7 +39,7 @@ module Spree
         params.require(:bank_account)
               .permit(:city, :first_name, :last_name, :line1, :line2,
                       :postal_code, :state, :business_name, :email, :tos_acceptance,
-                      :dob, :ssn, :token, :document_file)
+                      :dob, :ssn, :account_holder_type, :token, :document_file, :tax_id)
       end
     end
   end
