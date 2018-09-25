@@ -1,0 +1,30 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h1 class='panel-title'>
+      <%= Spree.t(:stock_locations) %>
+    </h1>
+  </div>
+
+  <div class='panel-body'>
+    <% if stock_locations.any? %>
+      <table class='table'>
+      <thead>
+        <tr data-hook="vendors_header">
+          <th><%= Spree.t(:name) %></th>
+        </tr>
+      </thead>
+        <tbody>
+          <% stock_locations.each do |stock_location|%>
+            <tr>
+              <td><%=link_to stock_location.name, edit_admin_stock_location_url(stock_location) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class='alert alert-info no-objects-found'>
+        <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::StockLocation)) %>,
+      </div>
+    <% end %>
+  </div>
+</div>

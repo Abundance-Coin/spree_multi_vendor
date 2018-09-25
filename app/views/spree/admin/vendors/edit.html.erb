@@ -22,6 +22,10 @@
   </div>
 </div>
 
+<% if can?(:manage, Spree::StockLocation) %>
+  <%= render partial: 'stock_locations', locals: { stock_locations: @vendor.stock_locations } %>
+<% end %>
+
 <% if can?(:manage, Spree::PriceMarkup) %>
   <%= render partial: 'price_markups_list', locals: { markups: @vendor.price_markups } %>
 <% end %>
