@@ -16,6 +16,14 @@
     <%= f.text_field :customer_support_email, class: 'form-control' %>
   <% end %>
 
+  <%= f.field_container :logo, class: ['form-group'] do %>
+    <%= f.label :logo, Spree.t(:logo) %>
+    <br>
+    <%= image_tag f.object.logo(:thumb) %>
+    <br>
+    <%= f.file_field :logo %>
+  <% end %>
+
   <% if can?(:manage, Spree::Vendor) %>
     <%= f.field_container :state do %>
       <%= f.label :state %>
