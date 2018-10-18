@@ -26,7 +26,7 @@
     <%= f.field_container :email, class: ['form-group'] do %>
       <%= f.label :email %>
       <span class="required">*</span>
-      <%= f.email_field :email, class: 'form-control', required: true, disabled: @bank_account.stripe_legal_verified? %>
+      <%= f.email_field :email, class: 'form-control', required: true %>
     <% end %>
 
     <%= f.field_container :dob, class: ['form-group'] do %>

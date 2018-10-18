@@ -37,6 +37,7 @@ module Spree
     end
 
     def update_stripe_account
+      stripe_account.email = email
       stripe_account.external_account = token if stripe_account_id != token
       stripe_account.legal_entity.address = address_hash
       stripe_account.legal_entity.business_name = business_name
@@ -49,7 +50,6 @@ module Spree
         stripe_account.legal_entity.personal_id_number = ssn if ssn.to_i.positive?
         stripe_account.legal_entity.verification.document = upload_document_file if document_file.present?
       end
-
 
       @account = stripe_account.save
     end
