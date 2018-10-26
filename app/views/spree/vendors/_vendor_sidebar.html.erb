@@ -1,6 +1,6 @@
 <div class='vendor-page-sidebar'>
   <div class='vendor-page-logo'>
-    <%= image_tag vendor.logo.attachment(:medium), class: 'img-thumbnail' %>
+    <%= image_tag vendor.logo ? vendor.logo.attachment(:medium) : 'vendors/logo.png', class: 'img-thumbnail' %>
   </div>
   <div class='vendor-page-info'>
     <div class='vendor-page-info-name'>
