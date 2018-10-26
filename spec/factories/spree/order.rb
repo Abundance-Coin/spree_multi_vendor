@@ -30,10 +30,11 @@ FactoryBot.define do
                     vendor: evaluator.vendor)
       end
 
+      Spree::Zone.find_each { |zone| zone.zone_members.create!(zoneable: order.ship_address.country) }
+
       order.line_items.reload
 
       order.create_proposed_shipments
-      order.update_with_updater!
 
       if evaluator.vendor_accounts
         order.vendors.each do |vendor|
@@ -60,6 +61,10 @@ FactoryBot.define do
           vendor.update(gateway_account_profile_id: account.account_id)
         end
       end
+
+      order.set_shipments_cost
+      order.update_with_updater!
+      order.reload
     end
 
     factory :completed_vendor_order do
@@ -85,6 +90,7 @@ FactoryBot.define do
           shipment.update_column('state', 'ready')
         end
         order.update_column(:completed_at, Time.current)
+        order.update_with_updater!
         order.reload
       end
 
@@ -95,6 +101,7 @@ FactoryBot.define do
             shipment.update_column('state', 'shipped')
           end
           order.update_column('shipment_state', 'shipped')
+          order.update_with_updater!
           order.reload
         end
       end
