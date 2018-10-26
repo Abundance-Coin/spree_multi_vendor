@@ -19,9 +19,13 @@
   <%= f.field_container :logo, class: ['form-group'] do %>
     <%= f.label :logo, Spree.t(:logo) %>
     <br>
-    <%= image_tag f.object.logo(:thumb) %>
-    <br>
-    <%= f.file_field :logo %>
+
+    <% if f.object.logo %>
+      <%= image_tag f.object.logo.attachment(:thumb) %>
+      <br>
+    <% end %>
+
+    <%= file_field_tag :logo %>
   <% end %>
 
   <% if can?(:manage, Spree::Vendor) %>

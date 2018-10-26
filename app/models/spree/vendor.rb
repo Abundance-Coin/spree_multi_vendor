@@ -18,8 +18,7 @@ module Spree
 
     has_many :users, through: :vendor_users
 
-    has_attached_file :logo, styles: { thumb: '180x180>', medium: '320x320>' }, default_url: 'vendors/logo.png'
-    validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\z}
+    has_one :logo, as: :viewable, dependent: :destroy, class_name: 'Spree::VendorLogo'
 
     after_create :create_stock_location
 
