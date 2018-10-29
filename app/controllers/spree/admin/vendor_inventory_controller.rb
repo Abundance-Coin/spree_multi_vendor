@@ -70,11 +70,11 @@ module Spree
       end
 
       def upload_params
-        params.fetch(:inventory, {}).permit(:attachment, :product_type, :provider)
+        params.fetch(:inventory, {}).permit(:attachment, :product_type, :upload_format, :provider)
       end
 
       def file_format
-        @attachment.content_type.split('/').last
+        upload_params[:upload_format].presence || @attachment.content_type.split('/').last
       end
     end
   end

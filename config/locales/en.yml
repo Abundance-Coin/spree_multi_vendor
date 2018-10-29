@@ -49,4 +49,5 @@ en:
     recalculate_price_markups: Recalculate Price Markups
     price_markups_recalculation: Price Markups recalculation process started
     product_type: Product type
-    inventory_provider: Inventory Provider
+    inventory_provider: Variant Provider (keep blank if not sure)
+    inventory_file_format: Inventory File Format (keep blank to find format automatically)

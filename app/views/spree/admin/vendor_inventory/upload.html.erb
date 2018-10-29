@@ -19,6 +19,12 @@
           <%= f.file_field :attachment %>
         <% end %>
 
+        <%= f.field_container :upload_format do %>
+          <%= f.label :upload_format, Spree.t(:inventory_file_format) %>
+          <br/>
+          <%= f.select :upload_format, Spree::Upload.supported_formats, include_blank: true %>
+        <% end %>
+
         <br>
         <%= button 'Upload', 'add', 'submit', { :class => "btn-success" } %>
       </p>
