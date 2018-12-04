@@ -34,7 +34,7 @@
       <span class="required">*</span>
       <br>
       <%= f.date_select :dob, class: 'form-control', add_month_numbers: true,
-          start_year: Date.today.year - 50, end_year:  Date.today.year - 18,
+          start_year: Date.today.year - 100, end_year:  Date.today.year - 18,
           include_blank: true, required: true, disabled: @bank_account.stripe_legal_verified? %>
     <% end %>
 
